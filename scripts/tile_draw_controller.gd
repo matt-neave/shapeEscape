@@ -46,12 +46,12 @@ func _place_shape_at_root(cell_pos):
 
 	for block_pos in shape.blocks.keys():
 		var global_pos = cell_pos + block_pos
-		set_cell(1, global_pos, 0, Vector2i(0, 0))
+		_place_block(global_pos, shape.blocks[block_pos])
 	active_shapes.append(shape)
 	shapes.pop_front()
 
 func _check_scale_shape():
-	var scale = 2
+	var scale = 3
 	var mouse_pos = get_global_mouse_position()
 	var cell_pos = local_to_map(mouse_pos)
 	if get_used_cells(1).has(cell_pos):
@@ -76,15 +76,33 @@ func _scale_shape(shape, scale):
 			BuildingBlock.Direction.NONE:
 				break
 			BuildingBlock.Direction.UP:
+				block.direction = BuildingBlock.Direction.NONE
 				for i in range(scale):
-					set_cell(1, global_pos + Vector2i(0, i), 0, Vector2i(0, 0))
+					_place_block(global_pos + Vector2i(0, i), block)
 			BuildingBlock.Direction.DOWN:
+				block.direction = BuildingBlock.Direction.NONE
 				for i in range(scale):
-					set_cell(1, global_pos - Vector2i(0, i), 0, Vector2i(0, 0))
+					_place_block(global_pos - Vector2i(0, i), block)
 			BuildingBlock.Direction.LEFT:
+				block.direction = BuildingBlock.Direction.NONE
 				for i in range(scale):
-					set_cell(1, global_pos - Vector2i(i, 0), 0, Vector2i(0, 0))
+					_place_block(global_pos - Vector2i(i, 0), block)
 			BuildingBlock.Direction.RIGHT:
+				block.direction = BuildingBlock.Direction.NONE
 				for i in range(scale):
-					set_cell(1, global_pos + Vector2i(i, 0), 0, Vector2i(0, 0))
+					_place_block(global_pos + Vector2i(i, 0), block)
+	
+
+func _place_block(global_pos, block):
+	match block.direction:
+		BuildingBlock.Direction.NONE:
+			set_cell(1, global_pos, 0, Vector2i(0, 2))
+		BuildingBlock.Direction.UP:
+			set_cell(1, global_pos, 0, Vector2i(1, 0))
+		BuildingBlock.Direction.DOWN:
+			set_cell(1, global_pos, 0, Vector2i(0, 1))
+		BuildingBlock.Direction.LEFT:
+			set_cell(1, global_pos, 0, Vector2i(1, 1))
+		BuildingBlock.Direction.RIGHT:
+			set_cell(1, global_pos, 0, Vector2i(0, 0))
 	

@@ -10,10 +10,11 @@
 tile_set = ExtResource("1_3xljd")
 format = 2
 layer_0/name = "base_map"
-layer_0/tile_data = PackedInt32Array(65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0)
+layer_0/tile_data = PackedInt32Array(65533, 0, 2, 65534, 0, 2, 65535, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2)
 layer_1/name = "placed_tiles"
 layer_1/tile_data = PackedInt32Array()
 script = ExtResource("2_x5ed3")
 
 [node name="Player" parent="." instance=ExtResource("2_xc0v7")]
 position = Vector2(-1, 0)
+scale = Vector2(5, 5)

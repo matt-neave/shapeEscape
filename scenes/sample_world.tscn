@@ -51,4 +51,7 @@ shape = SubResource("RectangleShape2D_ut35c")
 [node name="Sprite2D" type="Sprite2D" parent="Goal"]
 texture = SubResource("ImageTexture_ulrd1")
 
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(-458, 58)
+
 [connection signal="body_entered" from="Goal" to="Goal" method="_on_LevelCompleteTrigger_body_entered"]

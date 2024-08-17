@@ -7,6 +7,12 @@ const JUMP_VELOCITY = -400.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func _ready():
+	# Attempt to find a spawn point in the scene
+	var spawn_point = get_parent().get_node_or_null("SpawnPoint")
+	if spawn_point:
+		global_position = spawn_point.global_position  # Set player's position to the spawn point
+
 
 func _physics_process(delta):
 	# Add the gravity.

@@ -51,7 +51,7 @@ func _place_shape_at_root(cell_pos):
 	shapes.pop_front()
 
 func _check_scale_shape():
-	var scale = 2
+	var scale = 3
 	var mouse_pos = get_global_mouse_position()
 	var cell_pos = local_to_map(mouse_pos)
 	if get_used_cells(1).has(cell_pos):

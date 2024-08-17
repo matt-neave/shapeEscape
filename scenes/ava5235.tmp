@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3fehnst8hryr"]
+[gd_scene load_steps=5 format=3 uid="uid://b3fehnst8hryr"]
 
 [ext_resource type="PackedScene" uid="uid://dmv0xiogkamh2" path="res://scenes/shape_sprite.tscn" id="1_474m2"]
 [ext_resource type="Script" path="res://scripts/available_shape.gd" id="1_supkt"]
 [ext_resource type="Script" path="res://scripts/block_drag.gd" id="2_54qop"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pv4m5"]
+size = Vector2(112, 115)
 
 [node name="AvailableShape" type="Control"]
 custom_minimum_size = Vector2(200, 0)
@@ -19,6 +22,15 @@ layout_mode = 0
 offset_right = 117.0
 offset_bottom = 117.0
 
+[node name="MouseDetectArea" type="Area2D" parent="Panel"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_54qop")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Panel/MouseDetectArea"]
+position = Vector2(59, 58.5)
+shape = SubResource("RectangleShape2D_pv4m5")
+
 [node name="CenterContainer" type="CenterContainer" parent="Panel"]
 layout_mode = 0
 offset_right = 40.0
@@ -31,8 +43,3 @@ position = Vector2(59, 57)
 layout_mode = 0
 offset_right = 116.0
 offset_bottom = 117.0
-script = ExtResource("2_54qop")
-
-[connection signal="button_down" from="Button" to="Button" method="_on_button_down"]
-[connection signal="button_up" from="Button" to="Button" method="_on_button_up"]
-[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

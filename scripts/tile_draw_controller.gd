@@ -20,13 +20,13 @@ func _ready():
 
 	shapes.append(shape1)
 	shapes.append(shape2)
+	add_to_group("tile_control")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	# Check if the primary action button is pressed and place a tile
-	if Input.is_action_pressed("primary"):
-		if placement_mode:
-			_place_shape()
+	if Input.is_action_just_released("primary") && placement_mode:
+		_place_shape()
 
 	if Input.is_action_just_pressed("secondary"):
 		_check_scale_shape()
@@ -44,6 +44,12 @@ func _place_shape():
 		_place_shape_at_root(cell_pos)
 		SoundManager.play_sound(SoundManager.SOUNDS.TILE_PLACE)
 		placement_mode = false
+
+func enter_placement_mode():
+	placement_mode = true
+	
+func exit_placement_mode():
+	placement_mode = false
 
 func _place_shape_at_root(cell_pos):
 	if shapes.size() <= 0:

@@ -6,6 +6,9 @@ var active_shapes = []
 var placement_mode = false
 var prev_pos
 
+@onready var shapes_container = $"../CanvasLayer/Panel/ShapesContainer"  # Reference to the HBoxContainer
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Create some testing shapes, consisting of a 1x1 and a 2x1
@@ -20,6 +23,10 @@ func _ready():
 
 	shapes.append(shape1)
 	shapes.append(shape2)
+	
+	# Pass the shapes array to the HBoxContainer
+	shapes_container.shapes = shapes
+	shapes_container.place_shapes_in_container()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

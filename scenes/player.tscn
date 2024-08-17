@@ -4,10 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://cwdssf5ehi3b4" path="res://assets/sprites/knight.png" id="1_b1q50"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_locbo"]
-radius = 5.0
-height = 18.0
+radius = 25.0
+height = 90.0
 
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(0, -36)
 collision_layer = 0
 script = ExtResource("1_8keo0")
 
@@ -16,6 +17,7 @@ position_smoothing_enabled = true
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -9)
+scale = Vector2(5, 5)
 texture = ExtResource("1_b1q50")
 region_enabled = true
 region_rect = Rect2(9, 9, 14, 20)

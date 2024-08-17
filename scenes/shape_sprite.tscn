@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmv0xiogkamh2"]
+
+[ext_resource type="Script" path="res://scripts/shape_sprite.gd" id="1_cmvcg"]
+[ext_resource type="Texture2D" uid="uid://cbwo77jgcjy8w" path="res://assets/tiles/basic_block_left.png" id="2_cprqq"]
+
+[node name="ShapeSprite" type="Node2D"]
+script = ExtResource("1_cmvcg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_cprqq")

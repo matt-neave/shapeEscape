@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfiwma3suklni"]
+
+[ext_resource type="Script" path="res://scripts/avaliable_shapes.gd" id="1_e2wwu"]
+[ext_resource type="PackedScene" uid="uid://b3fehnst8hryr" path="res://scenes/available_shape.tscn" id="2_o34an"]
+
+[node name="AvaliableShapes" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e2wwu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 892.0
+offset_bottom = 123.0
+
+[node name="AvailableShape" parent="HBoxContainer" instance=ExtResource("2_o34an")]
+layout_mode = 2
+
+[node name="AvailableShape2" parent="HBoxContainer" instance=ExtResource("2_o34an")]
+layout_mode = 2

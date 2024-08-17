@@ -3,6 +3,9 @@ extends TileMap
 var shapes = []
 var active_shapes = []
 
+var placement_mode = false
+var prev_pos
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Create some testing shapes, consisting of a 1x1 and a 2x1
@@ -22,10 +25,17 @@ func _ready():
 func _process(_delta):
 	# Check if the primary action button is pressed and place a tile
 	if Input.is_action_pressed("primary"):
-		_place_shape()
+		if placement_mode:
+			_place_shape()
 
 	if Input.is_action_just_pressed("secondary"):
 		_check_scale_shape()
+		
+	if Input.is_action_just_pressed("placement"):
+		placement_mode = not placement_mode
+	
+	if placement_mode:
+		_placement()
 
 func _place_shape():
 	var mouse_pos = get_global_mouse_position()
@@ -33,6 +43,7 @@ func _place_shape():
 	if !get_used_cells(0).has(cell_pos) and !get_used_cells(1).has(cell_pos):
 		_place_shape_at_root(cell_pos)
 		SoundManager.play_sound(SoundManager.SOUNDS.TILE_PLACE)
+		placement_mode = false
 
 func _place_shape_at_root(cell_pos):
 	if shapes.size() <= 0:
@@ -46,7 +57,7 @@ func _place_shape_at_root(cell_pos):
 
 	for block_pos in shape.blocks.keys():
 		var global_pos = cell_pos + block_pos
-		set_cell(1, global_pos, 0, Vector2i(0, 0))
+		_place_block(global_pos, shape.blocks[block_pos])
 	active_shapes.append(shape)
 	shapes.pop_front()
 
@@ -76,15 +87,52 @@ func _scale_shape(shape, scale):
 			BuildingBlock.Direction.NONE:
 				break
 			BuildingBlock.Direction.UP:
+				block.direction = BuildingBlock.Direction.NONE
 				for i in range(scale):
-					set_cell(1, global_pos + Vector2i(0, i), 0, Vector2i(0, 0))
+					_place_block(global_pos + Vector2i(0, i), block)
 			BuildingBlock.Direction.DOWN:
+				block.direction = BuildingBlock.Direction.NONE
 				for i in range(scale):
-					set_cell(1, global_pos - Vector2i(0, i), 0, Vector2i(0, 0))
+					_place_block(global_pos - Vector2i(0, i), block)
 			BuildingBlock.Direction.LEFT:
+				block.direction = BuildingBlock.Direction.NONE
 				for i in range(scale):
-					set_cell(1, global_pos - Vector2i(i, 0), 0, Vector2i(0, 0))
+					_place_block(global_pos - Vector2i(i, 0), block)
 			BuildingBlock.Direction.RIGHT:
+				block.direction = BuildingBlock.Direction.NONE
 				for i in range(scale):
-					set_cell(1, global_pos + Vector2i(i, 0), 0, Vector2i(0, 0))
+					_place_block(global_pos + Vector2i(i, 0), block)
+	
+
+func _place_block(global_pos, block, layer=1):
+	match block.direction:
+		BuildingBlock.Direction.NONE:
+			set_cell(layer, global_pos, 0, Vector2i(0, 2))
+		BuildingBlock.Direction.UP:
+			set_cell(layer, global_pos, 0, Vector2i(1, 0))
+		BuildingBlock.Direction.DOWN:
+			set_cell(layer, global_pos, 0, Vector2i(0, 1))
+		BuildingBlock.Direction.LEFT:
+			set_cell(layer, global_pos, 0, Vector2i(1, 1))
+		BuildingBlock.Direction.RIGHT:
+			set_cell(layer, global_pos, 0, Vector2i(0, 0))
+
+func _placement():
+	var mouse_pos = get_global_mouse_position()
+	var cell_pos = local_to_map(mouse_pos)
+	var next_shape = shapes[0]
+	
+	if prev_pos:
+		for block_pos in next_shape.blocks.keys():
+			var global_pos = prev_pos + block_pos
+			set_cell(2, global_pos, 0, Vector2i(3,3))
+		
+	for block_pos in next_shape.blocks.keys():
+		var global_pos = cell_pos + block_pos
+		_place_block(global_pos, next_shape.blocks[block_pos], 2)
+		
+	prev_pos = cell_pos
+	
+	
+	
 	

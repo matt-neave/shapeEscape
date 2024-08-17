@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfiwma3suklni"]
+[gd_scene load_steps=3 format=3 uid="uid://dfiwma3suklni"]
 
 [ext_resource type="Script" path="res://scripts/avaliable_shapes.gd" id="1_e2wwu"]
-[ext_resource type="PackedScene" uid="uid://b3fehnst8hryr" path="res://scenes/available_shape.tscn" id="2_o34an"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8bj4x"]
 bg_color = Color(0.6, 0.6, 0.6, 0.0980392)
@@ -28,9 +27,3 @@ layout_mode = 0
 offset_right = 575.0
 offset_bottom = 81.0
 theme_override_constants/separation = 0
-
-[node name="AvailableShape" parent="Panel/HBoxContainer" instance=ExtResource("2_o34an")]
-layout_mode = 2
-
-[node name="AvailableShape2" parent="Panel/HBoxContainer" instance=ExtResource("2_o34an")]
-layout_mode = 2

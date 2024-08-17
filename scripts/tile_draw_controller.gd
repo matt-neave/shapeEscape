@@ -1,6 +1,6 @@
 extends TileMap
 
-var shapes = []
+var shapes
 var active_shapes = []
 
 var placement_mode = false
@@ -8,18 +8,7 @@ var prev_pos
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# Create some testing shapes, consisting of a 1x1 and a 2x1
-	var shape1 = BuildingShape.new()
-	shape1.root.direction = BuildingBlock.Direction.LEFT
-
-	var shape2 = BuildingShape.new()
-	shape2.root.direction = BuildingBlock.Direction.RIGHT
-	var block = BuildingBlock.new()
-	block.direction = BuildingBlock.Direction.LEFT
-	shape2.blocks[Vector2i(0, 1)] = block
-
-	shapes.append(shape1)
-	shapes.append(shape2)
+	shapes = GameController.levels[GameController.level].shapes
 	add_to_group("tile_control")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -110,7 +99,7 @@ func _scale_shape(shape, scale):
 				block.direction = BuildingBlock.Direction.NONE
 				for i in range(scale):
 					_place_block(global_pos + Vector2i(i, 0), block)
-	
+	SoundManager.play_sound(SoundManager.SOUNDS.TILE_PLACE)
 
 func _place_block(global_pos, block, layer=1):
 	match block.direction:

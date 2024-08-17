@@ -36,6 +36,7 @@ position = Vector2(39, 38)
 layout_mode = 0
 offset_right = 84.0
 offset_bottom = 80.0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_nf5pf")
 script = ExtResource("2_54qop")
 

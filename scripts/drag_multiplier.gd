@@ -8,9 +8,12 @@ var multiplier_value = 0
 func _ready():
 	pass
 
+func expire():
+	get_parent().queue_free()
+
 func _process(_delta):
 	if movement && Input.is_action_just_released("primary"):
-		get_tree().call_group("tile_control", "multiplier_dropped", multiplier_value)
+		get_tree().call_group("tile_control", "multiplier_dropped", multiplier_value, self)
 		movement = false
 		get_parent().global_position = initial_global_position
 		

@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" path="res://scripts/available_shape.gd" id="1_weeca"]
 [ext_resource type="Script" path="res://scripts/drag_multiplier.gd" id="2_7cn3y"]
-[ext_resource type="LabelSettings" uid="uid://w4vi2ub2x5dk" path="res://fonts/available_multiplier.tres" id="2_wrr8y"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iah11"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fxdy5"]
+font_size = 256
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nf5pf"]
 
@@ -35,12 +37,13 @@ scale = Vector2(0.25, 0.25)
 [node name="Label" type="Label" parent="Panel/CenterContainer"]
 layout_mode = 2
 text = "x2"
-label_settings = ExtResource("2_wrr8y")
+label_settings = SubResource("LabelSettings_fxdy5")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_right = 84.0
 offset_bottom = 80.0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_nf5pf")
 script = ExtResource("2_7cn3y")
 

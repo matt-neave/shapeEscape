@@ -1,6 +1,7 @@
 extends TileMap
 
 var shapes
+var shape
 var active_shapes = []
 
 var placement_mode = false
@@ -8,7 +9,7 @@ var prev_pos
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	shapes = GameController.levels[GameController.level].shapes
+	shapes = GameManager.level_shapes[GameManager.level].shapes
 	add_to_group("tile_control")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,9 +21,6 @@ func _process(_delta):
 	if Input.is_action_just_pressed("secondary"):
 		_check_scale_shape()
 		
-	if Input.is_action_just_pressed("placement"):
-		placement_mode = not placement_mode
-	
 	if placement_mode:
 		_placement()
 
@@ -34,20 +32,24 @@ func _place_shape():
 		SoundManager.play_sound(SoundManager.SOUNDS.TILE_PLACE)
 		placement_mode = false
 
-func enter_placement_mode():
+func enter_placement_mode(shape):
+	print(shape)
+	self.shape = shape
 	placement_mode = true
 	
-func exit_placement_mode():
+func exit_placement_mode(shape, shape_ui):
+	if true: # if shape is successfully placed
+		shapes.erase(shape)
+		shape_ui.expire()
 	placement_mode = false
 
-func multiplier_dropped(scale):
-	_check_scale_shape(scale)
+func multiplier_dropped(scale, multiplier_ui):
+	_check_scale_shape(scale, multiplier_ui)
 
 func _place_shape_at_root(cell_pos):
 	if shapes.size() <= 0:
 		return
 
-	var shape = shapes[0]
 	shape.global_position = cell_pos
 
 	# Add the root and other blocks to the tilemap	
@@ -59,7 +61,7 @@ func _place_shape_at_root(cell_pos):
 	active_shapes.append(shape)
 	shapes.pop_front()
 
-func _check_scale_shape(scale=1):
+func _check_scale_shape(scale=1, multiplayer_ui = null):
 	var mouse_pos = get_global_mouse_position()
 	var cell_pos = local_to_map(mouse_pos)
 	if get_used_cells(1).has(cell_pos):
@@ -72,6 +74,8 @@ func _check_scale_shape(scale=1):
 					break
 		
 		if shape != null:
+			if multiplayer_ui:
+				multiplayer_ui.expire()
 			_scale_shape(shape, scale)
 
 func _scale_shape(shape, scale):
@@ -117,7 +121,7 @@ func _place_block(global_pos, block, layer=1):
 func _placement():
 	var mouse_pos = get_global_mouse_position()
 	var cell_pos = local_to_map(mouse_pos)
-	var next_shape = shapes[0]
+	var next_shape = shape
 	
 	if prev_pos:
 		for block_pos in next_shape.blocks.keys():

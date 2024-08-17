@@ -8,7 +8,7 @@ const AVAILABLE_MULTIPLIER = preload("res://scenes/available_multiplier.tscn")
 func _ready():
 	# Testing multipliers
 	multipliers.append(2)
-	multipliers.append(3)
+	multipliers.append(2)
 
 	_draw_multiplier_ui()
 

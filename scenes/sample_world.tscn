@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpbgad7xpvgim"]
+[gd_scene load_steps=8 format=3 uid="uid://cpbgad7xpvgim"]
 
 [ext_resource type="TileSet" uid="uid://brbpok4okhehv" path="res://map_resources/world_tile_set.tres" id="1_3xljd"]
 [ext_resource type="Script" path="res://scripts/tile_draw_controller.gd" id="2_x5ed3"]
@@ -9,23 +9,19 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ut35c"]
 
-[sub_resource type="ImageTexture" id="ImageTexture_ulrd1"]
-
 [node name="SampleWorld" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_3xljd")
 format = 2
 layer_0/name = "base_map"
-layer_0/tile_data = PackedInt32Array(65533, 0, 2, 65534, 0, 2, 65535, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 131068, 0, 2, 131067, 0, 2, 131066, 0, 2, 131065, 0, 2, 131064, 0, 2, 131063, 0, 2, 65539, 0, 2, 65540, 0, 2, 65541, 0, 2, 65542, 0, 2, 65543, 0, 2, 65544, 0, 2, 65545, 0, 2)
+layer_0/tile_data = PackedInt32Array(65533, 0, 2, 65534, 0, 2, 65535, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 65532, 0, 2, 65531, 0, 2, 65530, 0, 2, 65529, 0, 2, 65528, 0, 2, 65527, 0, 2, 65526, 0, 2, 65525, 0, 2, 65524, 0, 2, 65523, 0, 2, 65522, 0, 2, -14, 0, 2, -65550, 0, 2, -131086, 0, 2, -196622, 0, 2, -262158, 0, 2, -327694, 0, 2, -393230, 0, 2, -458766, 0, 2, -524302, 0, 2, -589838, 0, 2, -655374, 0, 2, -720910, 0, 2, -786446, 0, 2, -786445, 0, 2, -786444, 0, 2, -786443, 0, 2, -786442, 0, 2, -786441, 0, 2, -786440, 0, 2, -786439, 0, 2, -786438, 0, 2, -786437, 0, 2, -786436, 0, 2, -786435, 0, 2, -786434, 0, 2, -786433, 0, 2, -851968, 0, 2, -851967, 0, 2, -851966, 0, 2, -851965, 0, 2, -851964, 0, 2, -851963, 0, 2, -851962, 0, 2, 3, 0, 2, 4, 0, 2, 5, 0, 2, 6, 0, 2, 7, 0, 2, 8, 0, 2, 9, 0, 2, 10, 0, 2, 11, 0, 2, 12, 0, 2, 13, 0, 2, -851961, 0, 2, -851960, 0, 2, -851959, 0, 2, -851958, 0, 2, -851957, 0, 2, -851956, 0, 2, -851955, 0, 2, -786419, 0, 2, -720883, 0, 2, -655347, 0, 2, -589811, 0, 2, -524275, 0, 2, -458739, 0, 2, -393203, 0, 2, -327667, 0, 2, -262131, 0, 2, -196595, 0, 2, -131059, 0, 2, -65523, 0, 2, -589816, 0, 2, -589815, 0, 2, -589814, 0, 2, -589813, 0, 2, -589812, 0, 2, -8, 0, 2, -65544, 0, 2, -65543, 0, 2, -7, 0, 2, -196619, 0, 2, -327688, 0, 2, -327687, 0, 2, -458757, 0, 2, -458756, 0, 2, -458755, 0, 2, -393219, 0, 2, -327683, 0, 2, -524281, 0, 2)
 layer_1/name = "placed_tiles"
-layer_1/tile_data = PackedInt32Array()
 layer_2/name = "placement_tiles"
-layer_2/tile_data = PackedInt32Array()
 script = ExtResource("2_x5ed3")
 
 [node name="Player" parent="." instance=ExtResource("2_xc0v7")]
-position = Vector2(-1, -35)
+position = Vector2(1249, -579)
 collision_layer = 1
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -43,17 +39,14 @@ offset_right = 31.0
 offset_bottom = 7.0
 
 [node name="Goal" type="Area2D" parent="."]
-position = Vector2(136.625, -3.875)
+position = Vector2(795, -592)
 script = ExtResource("4_ylrk4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
-position = Vector2(-96.625, -6.125)
+position = Vector2(-1.625, -0.125)
 shape = SubResource("RectangleShape2D_ut35c")
 
-[node name="Sprite2D" type="Sprite2D" parent="Goal"]
-texture = SubResource("ImageTexture_ulrd1")
-
 [node name="SpawnPoint" type="Marker2D" parent="."]
-position = Vector2(-458, 58)
+position = Vector2(-804, -8)
 
 [connection signal="body_entered" from="Goal" to="Goal" method="_on_LevelCompleteTrigger_body_entered"]

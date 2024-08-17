@@ -19,13 +19,12 @@ format = 2
 layer_0/name = "base_map"
 layer_0/tile_data = PackedInt32Array(65533, 0, 2, 65534, 0, 2, 65535, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 131068, 0, 2, 131067, 0, 2, 131066, 0, 2, 131065, 0, 2, 131064, 0, 2, 131063, 0, 2, 65539, 0, 2, 65540, 0, 2, 65541, 0, 2, 65542, 0, 2, 65543, 0, 2, 65544, 0, 2, 65545, 0, 2)
 layer_1/name = "placed_tiles"
-layer_1/tile_data = PackedInt32Array()
 layer_2/name = "placement_tiles"
-layer_2/tile_data = PackedInt32Array()
 script = ExtResource("2_x5ed3")
 
 [node name="Player" parent="." instance=ExtResource("2_xc0v7")]
 position = Vector2(-1, -35)
+collision_layer = 1
 
 [node name="UI" type="CanvasLayer" parent="."]
 

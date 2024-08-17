@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3e5ec4tic44f"]
+
+[ext_resource type="Script" path="res://scripts/available_shape.gd" id="1_weeca"]
+[ext_resource type="Script" path="res://scripts/drag_multiplier.gd" id="2_7cn3y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iah11"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fxdy5"]
+font_size = 256
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nf5pf"]
+
+[node name="AvailableMultiplier" type="Control"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_weeca")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 82.0
+offset_bottom = 82.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_iah11")
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 2.0
+offset_right = 298.0
+offset_bottom = 351.0
+scale = Vector2(0.25, 0.25)
+
+[node name="Label" type="Label" parent="Panel/CenterContainer"]
+layout_mode = 2
+text = "x2"
+label_settings = SubResource("LabelSettings_fxdy5")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 84.0
+offset_bottom = 80.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nf5pf")
+script = ExtResource("2_7cn3y")
+
+[connection signal="button_down" from="Button" to="Button" method="_on_button_down"]
+[connection signal="button_up" from="Button" to="Button" method="_on_button_up"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

@@ -51,6 +51,9 @@ func enter_placement_mode():
 func exit_placement_mode():
 	placement_mode = false
 
+func multiplier_dropped(scale):
+	_check_scale_shape(scale)
+
 func _place_shape_at_root(cell_pos):
 	if shapes.size() <= 0:
 		return
@@ -67,8 +70,7 @@ func _place_shape_at_root(cell_pos):
 	active_shapes.append(shape)
 	shapes.pop_front()
 
-func _check_scale_shape():
-	var scale = 3
+func _check_scale_shape(scale=1):
 	var mouse_pos = get_global_mouse_position()
 	var cell_pos = local_to_map(mouse_pos)
 	if get_used_cells(1).has(cell_pos):

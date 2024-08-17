@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjyivq413uhna"]
+
+[ext_resource type="Script" path="res://scripts/avaliable_multipliers.gd" id="1_6ypu0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8bj4x"]
+bg_color = Color(0.6, 0.6, 0.6, 0.0980392)
+
+[node name="AvaliableMultipliers" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -569.0
+offset_bottom = -530.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6ypu0")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 541.0
+offset_bottom = 81.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8bj4x")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 541.0
+offset_bottom = 81.0
+theme_override_constants/separation = 0

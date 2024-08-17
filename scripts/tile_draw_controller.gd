@@ -25,7 +25,8 @@ func _ready():
 func _process(_delta):
 	# Check if the primary action button is pressed and place a tile
 	if Input.is_action_pressed("primary"):
-		_place_shape()
+		if placement_mode:
+			_place_shape()
 
 	if Input.is_action_just_pressed("secondary"):
 		_check_scale_shape()

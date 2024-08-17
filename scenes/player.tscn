@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6bm4f81i0hg8"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_8keo0"]
+[ext_resource type="Texture2D" uid="uid://cwdssf5ehi3b4" path="res://assets/sprites/knight.png" id="1_b1q50"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_locbo"]
+radius = 5.0
+height = 18.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_8keo0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -9)
+texture = ExtResource("1_b1q50")
+region_enabled = true
+region_rect = Rect2(9, 9, 14, 20)
+
+[node name="PlayerWorldCollider" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9)
+shape = SubResource("CapsuleShape2D_locbo")

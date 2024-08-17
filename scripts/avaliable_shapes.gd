@@ -1,7 +1,7 @@
 extends Control
 
 var shapes = []
-@onready var shape_container = $HBoxContainer
+@onready var shape_container = $Panel/HBoxContainer
 const AVAILABLE_SHAPE = preload("res://scenes/available_shape.tscn")
 
 # Called when the node enters the scene tree for the first time.

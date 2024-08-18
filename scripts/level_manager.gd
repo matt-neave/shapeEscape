@@ -6,7 +6,7 @@ enum GameState {
 }
 
 @onready var start_button: Button = $UI/StartButton
-@onready var reset_button = $CanvasLayer/Button
+@onready var reset_button = $CanvasLayer/Retry
 @onready var phase_1_camera: Camera2D = $Phase1Camera
 @onready var ui = $UI
 

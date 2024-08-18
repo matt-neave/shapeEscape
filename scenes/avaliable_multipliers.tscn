@@ -18,12 +18,12 @@ script = ExtResource("1_6ypu0")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_right = 541.0
+offset_right = 451.0
 offset_bottom = 81.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_8bj4x")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 0
-offset_right = 541.0
+offset_right = 451.0
 offset_bottom = 81.0
 theme_override_constants/separation = 0

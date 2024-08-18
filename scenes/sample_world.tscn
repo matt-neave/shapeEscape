@@ -1,45 +1,60 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpbgad7xpvgim"]
+[gd_scene load_steps=9 format=3 uid="uid://cpbgad7xpvgim"]
 
 [ext_resource type="TileSet" uid="uid://brbpok4okhehv" path="res://map_resources/world_tile_set.tres" id="1_3xljd"]
+[ext_resource type="Script" path="res://scripts/level_manager.gd" id="1_oc1xv"]
 [ext_resource type="Script" path="res://scripts/tile_draw_controller.gd" id="2_x5ed3"]
-[ext_resource type="PackedScene" uid="uid://c6bm4f81i0hg8" path="res://scenes/player.tscn" id="2_xc0v7"]
 [ext_resource type="PackedScene" uid="uid://dfiwma3suklni" path="res://scenes/avaliable_shapes.tscn" id="4_jnf17"]
 [ext_resource type="Script" path="res://scripts/goal.gd" id="4_ylrk4"]
 [ext_resource type="PackedScene" uid="uid://bjyivq413uhna" path="res://scenes/avaliable_multipliers.tscn" id="5_86tck"]
+[ext_resource type="PackedScene" uid="uid://rvp1j1c6hjh" path="res://particles/arrow_indicator.tscn" id="7_oeccr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ut35c"]
 
 [node name="SampleWorld" type="Node2D"]
+script = ExtResource("1_oc1xv")
+
+[node name="Phase1Camera" type="Camera2D" parent="."]
+position = Vector2(0, -262)
+zoom = Vector2(0.7, 0.7)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_3xljd")
 format = 2
 layer_0/name = "base_map"
-layer_0/tile_data = PackedInt32Array(65533, 0, 2, 65534, 0, 2, 65535, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 65532, 0, 2, 65531, 0, 2, 65530, 0, 2, 65529, 0, 2, 65528, 0, 2, 65527, 0, 2, 65526, 0, 2, 65525, 0, 2, 65524, 0, 2, 65523, 0, 2, 65522, 0, 2, -14, 0, 2, -65550, 0, 2, -131086, 0, 2, -196622, 0, 2, -262158, 0, 2, -327694, 0, 2, -393230, 0, 2, -458766, 0, 2, -524302, 0, 2, -589838, 0, 2, -655374, 0, 2, -720910, 0, 2, -786446, 0, 2, -786445, 0, 2, -786444, 0, 2, -786443, 0, 2, -786442, 0, 2, -786441, 0, 2, -786440, 0, 2, -786439, 0, 2, -786438, 0, 2, -786437, 0, 2, -786436, 0, 2, -786435, 0, 2, -786434, 0, 2, -786433, 0, 2, -851968, 0, 2, -851967, 0, 2, -851966, 0, 2, -851965, 0, 2, -851964, 0, 2, -851963, 0, 2, -851962, 0, 2, 3, 0, 2, 4, 0, 2, 5, 0, 2, 6, 0, 2, 7, 0, 2, 8, 0, 2, 9, 0, 2, 10, 0, 2, 11, 0, 2, 12, 0, 2, 13, 0, 2, -851961, 0, 2, -851960, 0, 2, -851959, 0, 2, -851958, 0, 2, -851957, 0, 2, -851956, 0, 2, -851955, 0, 2, -786419, 0, 2, -720883, 0, 2, -655347, 0, 2, -589811, 0, 2, -524275, 0, 2, -458739, 0, 2, -393203, 0, 2, -327667, 0, 2, -262131, 0, 2, -196595, 0, 2, -131059, 0, 2, -65523, 0, 2, -589816, 0, 2, -589815, 0, 2, -589814, 0, 2, -589813, 0, 2, -589812, 0, 2, -8, 0, 2, -65544, 0, 2, -65543, 0, 2, -7, 0, 2, -196619, 0, 2, -327688, 0, 2, -327687, 0, 2, -458757, 0, 2, -458756, 0, 2, -458755, 0, 2, -393219, 0, 2, -327683, 0, 2, -524281, 0, 2)
+layer_0/tile_data = PackedInt32Array(65533, 0, 2, 65534, 0, 2, 65535, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 65532, 0, 2, 65531, 0, 2, 65530, 0, 2, 65529, 0, 2, 65528, 0, 2, 65527, 0, 2, 65526, 0, 2, 65525, 0, 2, 65524, 0, 2, 65523, 0, 2, 3, 0, 2, 4, 0, 2, 5, 0, 2, 6, 0, 2, 7, 0, 2, 8, 0, 2, 9, 0, 2, 10, 0, 2, 11, 0, 2, 12, 0, 2, -589816, 0, 2, -589815, 0, 2, -589814, 0, 2, -589813, 0, 2, -8, 0, 2, -65544, 0, 2, -65543, 0, 2, -7, 0, 2, -196619, 0, 2, -327688, 0, 2, -327687, 0, 2, -458757, 0, 2, -458756, 0, 2, -458755, 0, 2, -393219, 0, 2, -327683, 0, 2, -524281, 0, 2, -65524, 0, 2, -131060, 0, 2, -196596, 0, 2, -262132, 0, 2, -327668, 0, 2, -393204, 0, 2, -458740, 0, 2, -524276, 0, 2, -589812, 0, 2, -655348, 0, 2, -720884, 0, 2, -786420, 0, 2, -720909, 0, 2, -655373, 0, 2, -589837, 0, 2, -524301, 0, 2, -458765, 0, 2, -393229, 0, 2, -327693, 0, 2, -262157, 0, 2, -196621, 0, 2, -131085, 0, 2, -65549, 0, 2, -13, 0, 2, -720908, 0, 2, -720907, 0, 2, -720906, 0, 2, -720905, 0, 2, -720904, 0, 2, -720903, 0, 2, -720902, 0, 2, -720901, 0, 2, -720900, 0, 2, -720899, 0, 2, -720898, 0, 2, -720897, 0, 2, -786432, 0, 2, -786431, 0, 2, -786430, 0, 2, -786429, 0, 2, -786428, 0, 2, -786427, 0, 2, -786426, 0, 2, -786425, 0, 2, -786424, 0, 2, -786423, 0, 2, -786422, 0, 2, -786421, 0, 2)
 layer_1/name = "placed_tiles"
+layer_1/tile_data = PackedInt32Array()
 layer_2/name = "placement_tiles"
+layer_2/tile_data = PackedInt32Array()
 script = ExtResource("2_x5ed3")
-
-[node name="Player" parent="." instance=ExtResource("2_xc0v7")]
-position = Vector2(1249, -579)
-collision_layer = 1
 
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="AvaliableShapes" parent="UI" instance=ExtResource("4_jnf17")]
 offset_left = 18.0
-offset_top = 538.0
+offset_top = 564.0
 offset_right = 18.0
-offset_bottom = 538.0
+offset_bottom = 564.0
 
-[node name="AvaliableShapes2" parent="UI" instance=ExtResource("5_86tck")]
+[node name="AvaliableMultipliers" parent="UI" instance=ExtResource("5_86tck")]
 offset_left = 600.0
-offset_top = 537.0
+offset_top = 563.0
 offset_right = 31.0
-offset_bottom = 7.0
+offset_bottom = 33.0
+
+[node name="StartButton" type="Button" parent="UI"]
+offset_left = 1064.0
+offset_top = 567.0
+offset_right = 1243.0
+offset_bottom = 750.0
+scale = Vector2(0.4, 0.4)
+focus_mode = 0
+theme_override_font_sizes/font_size = 128
+text = "Go
+"
 
 [node name="Goal" type="Area2D" parent="."]
-position = Vector2(795, -592)
+position = Vector2(706, -592)
 script = ExtResource("4_ylrk4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
@@ -47,6 +62,14 @@ position = Vector2(-1.625, -0.125)
 shape = SubResource("RectangleShape2D_ut35c")
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
-position = Vector2(-804, -8)
+position = Vector2(-731, -8)
+
+[node name="Indicators" type="Node2D" parent="."]
+
+[node name="SpawnIndicator" parent="Indicators" instance=ExtResource("7_oeccr")]
+position = Vector2(-730, -94)
+
+[node name="GoalIndicator" parent="Indicators" instance=ExtResource("7_oeccr")]
+position = Vector2(701, -675)
 
 [connection signal="body_entered" from="Goal" to="Goal" method="_on_LevelCompleteTrigger_body_entered"]

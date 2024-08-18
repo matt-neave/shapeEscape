@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://rvp1j1c6hjh"]
+
+[ext_resource type="Texture2D" uid="uid://duxbdu3vrrk0y" path="res://assets/sprites/directional_arrow.png" id="1_20rb7"]
+
+[sub_resource type="Gradient" id="Gradient_8mr0m"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[node name="ArrowIndicator" type="CPUParticles2D"]
+position = Vector2(-5967, -3666)
+amount = 2
+lifetime = 2.0
+texture = ExtResource("1_20rb7")
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 45.0
+initial_velocity_max = 45.0
+angle_min = 90.0
+angle_max = 90.0
+scale_amount_min = 0.08
+scale_amount_max = 0.08
+color_ramp = SubResource("Gradient_8mr0m")

@@ -1,5 +1,7 @@
 extends TileMap
 
+@export var shapes_control: Control
+
 var shape
 var active_shapes = []
 
@@ -25,6 +27,11 @@ func _process(_delta):
 func _place_shape():
 	var mouse_pos = get_global_mouse_position()
 	var cell_pos = local_to_map(mouse_pos)
+	
+	if shapes_control.mouse_over:
+		placement_mode = false
+		return
+	
 	if !get_used_cells(0).has(cell_pos) and !get_used_cells(1).has(cell_pos):
 		_place_shape_at_root(cell_pos)
 		SoundManager.play_sound(SoundManager.SOUNDS.TILE_PLACE)
@@ -35,7 +42,7 @@ func enter_placement_mode(shape):
 	placement_mode = true
 	
 func exit_placement_mode(shape, shape_ui):
-	if true: # if shape is successfully placed
+	if !shapes_control.mouse_over: # if shape is successfully placed
 		shape_ui.expire()
 	placement_mode = false
 	_clear_placement_cells()

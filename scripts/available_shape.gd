@@ -10,3 +10,4 @@ var multiplier: float:
 		multiplier = value
 		$Panel/CenterContainer/Label.text = "x" + str(value)
 		$Button.multiplier_value = value
+

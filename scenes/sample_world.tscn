@@ -17,7 +17,7 @@ script = ExtResource("1_oc1xv")
 position = Vector2(0, -262)
 zoom = Vector2(0.7, 0.7)
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." node_paths=PackedStringArray("shapes_control")]
 tile_set = ExtResource("1_3xljd")
 format = 2
 layer_0/name = "base_map"
@@ -28,26 +28,27 @@ layer_2/name = "placement_tiles"
 layer_2/modulate = Color(1, 1, 1, 0.466667)
 layer_2/tile_data = PackedInt32Array()
 script = ExtResource("2_x5ed3")
+shapes_control = NodePath("../UI/AvaliableShapes")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="AvaliableShapes" parent="UI" instance=ExtResource("4_jnf17")]
 offset_left = 18.0
-offset_top = 564.0
-offset_right = 18.0
-offset_bottom = 564.0
+offset_top = 554.0
+offset_right = -560.0
+offset_bottom = -16.0
 
 [node name="AvaliableMultipliers" parent="UI" instance=ExtResource("5_86tck")]
 offset_left = 600.0
-offset_top = 563.0
+offset_top = 553.0
 offset_right = 31.0
-offset_bottom = 33.0
+offset_bottom = 23.0
 
 [node name="StartButton" type="Button" parent="UI"]
 offset_left = 1064.0
-offset_top = 567.0
+offset_top = 557.0
 offset_right = 1243.0
-offset_bottom = 750.0
+offset_bottom = 740.0
 scale = Vector2(0.4, 0.4)
 focus_mode = 0
 theme_override_font_sizes/font_size = 128

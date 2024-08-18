@@ -1,7 +1,8 @@
 extends Control
 
-var shapes = []
 @onready var shape_container = $Panel/HBoxContainer
+var shapes = []
+var mouse_over: bool = false
 const AVAILABLE_SHAPE = preload("res://scenes/available_shape.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -25,3 +26,9 @@ func fetch_ui_data():
 		
 	shapes = GameManager.get_shapes_for_level()
 	_draw_available_shapes()
+
+func _on_panel_mouse_entered():
+	mouse_over = true
+
+func _on_panel_mouse_exited():
+	mouse_over = false

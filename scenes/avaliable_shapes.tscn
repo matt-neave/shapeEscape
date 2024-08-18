@@ -27,3 +27,6 @@ layout_mode = 0
 offset_right = 575.0
 offset_bottom = 81.0
 theme_override_constants/separation = 0
+
+[connection signal="mouse_entered" from="Panel" to="." method="_on_panel_mouse_entered"]
+[connection signal="mouse_exited" from="Panel" to="." method="_on_panel_mouse_exited"]

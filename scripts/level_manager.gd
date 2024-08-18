@@ -7,6 +7,8 @@ enum GameState {
 
 @onready var start_button: Button = $UI/StartButton
 @onready var phase_1_camera: Camera2D = $Phase1Camera
+@onready var ui = $UI
+
 const PLAYER = preload("res://scenes/player.tscn")
 
 var game_state = GameState.BUILD
@@ -30,7 +32,7 @@ func _toggle_game_state():
 
 func _start_game():
 	game_state = GameState.PLAY
-
+	ui.hide()
 	var player = PLAYER.instantiate()
 	add_child(player)
 	start_button.text = "Retry"
@@ -38,8 +40,9 @@ func _start_game():
 
 func _reset_game():
 	game_state = GameState.BUILD
+	ui.show()
 	start_button.text = "Go"
-
+	
 	# Remove the player
 	for child in get_children():
 		if child.name == "Player":

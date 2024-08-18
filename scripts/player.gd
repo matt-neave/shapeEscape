@@ -14,6 +14,19 @@ func _ready():
 	if spawn_point:
 		global_position = spawn_point.global_position  # Set player's position to the spawn point
 	
+	# Set the camera limits to the tilemap's used rect.
+	var tilemap: TileMap = get_parent().get_node("TileMap")
+	var rect = tilemap.get_used_rect()
+	# Scale by the tile size.
+	rect.size *= tilemap.tile_set.tile_size
+	rect.position *= tilemap.tile_set.tile_size
+	print(rect)
+	camera_2d.limit_left = rect.position.x
+	camera_2d.limit_right = rect.position.x + rect.size.x
+	camera_2d.limit_top = rect.position.y
+	camera_2d.limit_bottom = rect.position.y + rect.size.y
+
+
 	camera_2d.make_current()
 
 func _physics_process(delta):

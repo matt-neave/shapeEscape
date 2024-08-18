@@ -9,7 +9,6 @@ height = 78.0
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(0, -36)
-collision_layer = 0
 script = ExtResource("1_8keo0")
 
 [node name="Camera2D" type="Camera2D" parent="."]

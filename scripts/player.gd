@@ -4,6 +4,8 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -375.0
 @onready var camera_2d: Camera2D = $Camera2D
+@onready var animation_player = $Body/AnimationPlayer
+@onready var feet_animation = $Body/FeetAnimation
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -33,7 +35,9 @@ func _physics_process(delta):
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	
+	_sprite_direction()
+	_run_animation()
 	move_and_slide()
 
 func _adjust_camera_limits():
@@ -48,3 +52,19 @@ func _adjust_camera_limits():
 	camera_2d.limit_right = rect.position.x + rect.size.x
 	camera_2d.limit_top = rect.position.y
 	camera_2d.limit_bottom = rect.position.y + rect.size.y
+
+func _sprite_direction():
+	if velocity.x < 0:
+		$Body.scale.x = - abs($Body.scale.x)
+	elif velocity.x > 0:
+		$Body.scale.x = abs($Body.scale.x)
+
+func _run_animation():
+	if velocity.x != 0:
+		feet_animation.play("run")
+		
+	if Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right"):
+		animation_player.play("run")
+	elif is_on_floor() and velocity.x == 0:
+		animation_player.play("idle")
+		feet_animation.pause()

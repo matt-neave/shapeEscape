@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://rvp1j1c6hjh" path="res://particles/arrow_indicator.tscn" id="7_oeccr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rk7v1"]
-bg_color = Color(0.407843, 0.654902, 0.603922, 0.658824)
+bg_color = Color(0, 0, 0, 0.658824)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ut35c"]
 

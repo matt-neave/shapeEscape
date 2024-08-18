@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cpbgad7xpvgim"]
+[gd_scene load_steps=12 format=3 uid="uid://cpbgad7xpvgim"]
 
 [ext_resource type="TileSet" uid="uid://brbpok4okhehv" path="res://map_resources/world_tile_set.tres" id="1_3xljd"]
 [ext_resource type="Script" path="res://scripts/level_manager.gd" id="1_oc1xv"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dfiwma3suklni" path="res://scenes/avaliable_shapes.tscn" id="4_jnf17"]
 [ext_resource type="Script" path="res://scripts/goal.gd" id="4_ylrk4"]
 [ext_resource type="PackedScene" uid="uid://bjyivq413uhna" path="res://scenes/avaliable_multipliers.tscn" id="5_86tck"]
+[ext_resource type="FontFile" uid="uid://bfjao6y3cc3i" path="res://assets/fonts/MotleyForcesRegular-w1rZ3.ttf" id="7_k4dme"]
 [ext_resource type="PackedScene" uid="uid://rvp1j1c6hjh" path="res://particles/arrow_indicator.tscn" id="7_oeccr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rk7v1"]
@@ -65,6 +66,7 @@ offset_right = 1243.0
 offset_bottom = 740.0
 scale = Vector2(0.4, 0.4)
 focus_mode = 0
+theme_override_fonts/font = ExtResource("7_k4dme")
 theme_override_font_sizes/font_size = 128
 text = "Go
 "
@@ -90,7 +92,7 @@ position = Vector2(701, -675)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="Retry" type="Button" parent="CanvasLayer"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -100,6 +102,7 @@ offset_bottom = 183.0
 grow_horizontal = 2
 scale = Vector2(0.25, 0.25)
 focus_mode = 0
+theme_override_fonts/font = ExtResource("7_k4dme")
 theme_override_font_sizes/font_size = 128
 text = "RETRY"
 

@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 SoundManager="*res://scripts/sound_manager.gd"
 GameManager="*res://scripts/game_manager.gd"
 
+[display]
+
+window/size/mode=2
+window/stretch/mode="canvas_items"
+
 [input]
 
 primary={

@@ -1,7 +1,9 @@
 extends TileMap
 
 @export var shapes_control: Control
+@onready var tile_particles = $"../TileParticles"
 
+const PLACEMENT_PARTICLES = preload("res://particles/placement_particles.tscn")
 var shape
 var active_shapes = []
 

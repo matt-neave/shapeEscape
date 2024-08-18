@@ -35,4 +35,5 @@ func _on_Level1_pressed() -> void:
 
 # Function for when Back button is pressed
 func _on_Back_pressed() -> void:
+	SoundManager.play_sound(SoundManager.SOUNDS.BUTTON_CLICK)	
 	get_tree().change_scene_to_file("res://Scenes/menu.tscn")  # Replace with your actual menu scene path

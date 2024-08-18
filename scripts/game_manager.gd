@@ -40,6 +40,7 @@ var current_state: GameState = GameState.MENU
 func _ready():
 	_test_shapes()
 	_go_to_menu()
+	SoundManager.play_music(SoundManager.SOUNDS.BUILD_MUSIC)
 
 func _go_to_menu():
 	current_state = GameState.MENU

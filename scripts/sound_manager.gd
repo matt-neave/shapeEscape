@@ -2,12 +2,14 @@ extends Node
 
 enum SOUNDS {
 	TILE_PLACE,
-	BUILD_MUSIC
+	BUILD_MUSIC,
+	BUTTON_CLICK
 }
 
 const AUDIO_TRACKS = {
 	SOUNDS.TILE_PLACE: preload("res://sfx/tile_place.wav"),
 	SOUNDS.BUILD_MUSIC: preload("res://sfx/Equatorial Complex.mp3"),
+	SOUNDS.BUTTON_CLICK: preload("res://sfx/button_click.wav"),
 }
 
 var music_player = AudioStreamPlayer2D.new()

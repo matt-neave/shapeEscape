@@ -26,6 +26,7 @@ func _process(delta):
 
 
 func _toggle_game_state():
+	SoundManager.play_sound(SoundManager.SOUNDS.BUTTON_CLICK)
 	_start_game()
 
 func _start_game():
@@ -38,7 +39,7 @@ func _start_game():
 func _reset_game():
 	game_state = GameState.BUILD
 	ui.show()
-	SoundManager.play_music(SoundManager.SOUNDS.BUILD_MUSIC)
+	SoundManager.play_sound(SoundManager.SOUNDS.BUTTON_CLICK)
 	
 	# Remove the player
 	for child in get_children():

@@ -14,8 +14,8 @@ func _process(delta):
 	pass
 
 func _draw_available_shapes():
-	print(shapes)
 	for shape in shapes:
 		var new_shape = AVAILABLE_SHAPE.instantiate()
 		new_shape.shape = shape
 		shape_container.add_child(new_shape)
+

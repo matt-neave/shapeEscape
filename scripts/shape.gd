@@ -7,10 +7,13 @@ class_name BuildingShape
 # The shape has a position, which is the global position of the shape in the tilemap
 
 @export var global_position: Vector2i = Vector2i(0, 0)
-@export var root: BuildingBlock = BuildingBlock.new()
-@export var blocks: Dictionary = {
-	Vector2i(0, 0): root
-}
+@export var root: BuildingBlock
+@export var blocks: Dictionary = {}
 @export var color: Color = Color(0,0,0)
 func size():
 	return blocks.size()
+
+func _init():
+	color = Color(randi() % 255, randi() % 255, randi() % 255)
+	root = BuildingBlock.new()
+	blocks[Vector2i(0, 0)] = self.root

@@ -61,14 +61,14 @@ func get_shapes_for_level() -> Array:
 	var shape2 = BuildingShape.new()
 	shape2.root.direction = BuildingBlock.Direction.RIGHT
 	
-	var shape3 = BuildingShape.new()
-	shape3.root.direction = BuildingBlock.Direction.RIGHT
-
 	var block = BuildingBlock.new()
 	block.direction = BuildingBlock.Direction.LEFT
 	
 	shape2.blocks[Vector2i(2, -1)] = block
 
+	var shape3 = BuildingShape.new()
+	shape3.root.direction = BuildingBlock.Direction.RIGHT
+	
 	shapes.append(shape1)
 	shapes.append(shape2)
 	shapes.append(shape3)

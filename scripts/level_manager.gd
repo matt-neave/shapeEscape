@@ -47,4 +47,7 @@ func _reset_game():
 			
 	# Set camera
 	phase_1_camera.make_current()
+	
+	# Reset the tile control
+	get_tree().call_group("tile_control", "_reset")
 

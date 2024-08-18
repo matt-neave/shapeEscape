@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -375.0
+@onready var camera_2d: Camera2D = $Camera2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -12,7 +13,8 @@ func _ready():
 	var spawn_point = get_parent().get_node_or_null("SpawnPoint")
 	if spawn_point:
 		global_position = spawn_point.global_position  # Set player's position to the spawn point
-
+	
+	camera_2d.make_current()
 
 func _physics_process(delta):
 	# Add the gravity.

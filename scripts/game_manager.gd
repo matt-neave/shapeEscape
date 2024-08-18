@@ -11,6 +11,26 @@ var level_shapes = [
 		"shapes": []
 	}
 ]
+
+var level_data = [
+	{
+		"shapes" = [
+			[["left", 0, 0]],
+			[["right", 0, 0]],
+			[["right", 0, 0], ["left", 2, -1]],
+		],
+		"multipliers" = [2, 2, 2]
+	},
+	#{
+		#"shapes" = [],
+		#"multipliers" = []
+	#},    
+	#{
+		#"shapes" = [],
+		#"multipliers" = []
+	#}
+]
+
 var level = 0
 var levels = ["res://scenes/sample_world.tscn"]
 var current_level_index = 0
@@ -45,35 +65,53 @@ func _test_shapes():
 
 	var shape2 = BuildingShape.new()
 	shape2.root.direction = BuildingBlock.Direction.RIGHT
+	
 	var block = BuildingBlock.new()
 	block.direction = BuildingBlock.Direction.LEFT
 	shape2.blocks[Vector2i(0, 1)] = block
 
 	level_shapes[0].shapes.append(shape1)
 	level_shapes[0].shapes.append(shape2)
+	
+func get_direction_from_string(direction_str):
+	match direction_str:
+		"left":
+			return BuildingBlock.Direction.LEFT
+		"right":
+			return BuildingBlock.Direction.RIGHT
+		"up":
+			return BuildingBlock.Direction.UP
+		"down":
+			return BuildingBlock.Direction.DOWN
+		_:
+			return BuildingBlock.Direction.NONE
 
 func get_shapes_for_level() -> Array:
-	# Create some testing shapes, consisting of a 1x1 and a 2x1
 	var shapes = []
-	var shape1 = BuildingShape.new()
-	shape1.root.direction = BuildingBlock.Direction.LEFT
+	var current_level_data = level_data[current_level_index]
+	var shape_data = current_level_data["shapes"]
 	
-	var shape2 = BuildingShape.new()
-	shape2.root.direction = BuildingBlock.Direction.RIGHT
+	for shape_tuple_list in shape_data:
+		var shape = BuildingShape.new()
+		
+		var root_tuple = shape_tuple_list[0]
+		shape.root.direction = get_direction_from_string(root_tuple[0])
+		
+		for i in range(1, shape_tuple_list.size()):
+			var block_tuple = shape_tuple_list[i]
+			var block = BuildingBlock.new()
+			block.direction = get_direction_from_string(block_tuple[0])
+			shape.blocks[Vector2i(block_tuple[1], block_tuple[2])] = block
+		
+		shapes.append(shape)
 	
-	var block = BuildingBlock.new()
-	block.direction = BuildingBlock.Direction.LEFT
+	var length_of_shapes = shapes.size()
+	print("Number of shapes: ", length_of_shapes)
 	
-	shape2.blocks[Vector2i(2, -1)] = block
-
-	var shape3 = BuildingShape.new()
-	shape3.root.direction = BuildingBlock.Direction.RIGHT
-	
-	shapes.append(shape1)
-	shapes.append(shape2)
-	shapes.append(shape3)
-
 	return shapes
 
 func get_multipliers_for_level() -> Array:
-	return [2, 2]
+	var current_level_data = level_data[current_level_index]
+	var mult_data = current_level_data["multipliers"]
+	
+	return mult_data

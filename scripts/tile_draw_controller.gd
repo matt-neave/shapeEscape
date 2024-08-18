@@ -131,13 +131,11 @@ func _reset_cell(pos, layer=2):
 	set_cell(layer, pos, 0, Vector2i(3,3))
 
 func _reset():
-	
 	for active_shape in active_shapes:
 		# Remove all the tiles in the shape from the tilemap
 		for block_pos in active_shape.blocks.keys():
 			var global_pos = active_shape.global_position + block_pos
 			_reset_cell(global_pos, 1)
 			
-	
-	#active_shapes = []
+	active_shapes = []
 	

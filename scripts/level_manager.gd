@@ -50,4 +50,5 @@ func _reset_game():
 	
 	# Reset the tile control
 	get_tree().call_group("tile_control", "_reset")
+	get_tree().call_group("ui_control", "fetch_ui_data")
 

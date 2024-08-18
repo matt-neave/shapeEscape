@@ -6,8 +6,8 @@ const AVAILABLE_SHAPE = preload("res://scenes/available_shape.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	shapes = GameManager.get_shapes_for_level()
-	_draw_available_shapes()
+	fetch_ui_data()
+	add_to_group("ui_control")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -19,3 +19,9 @@ func _draw_available_shapes():
 		new_shape.shape = shape
 		shape_container.add_child(new_shape)
 
+func fetch_ui_data():
+	for child in shape_container.get_children():
+		child.queue_free()
+		
+	shapes = GameManager.get_shapes_for_level()
+	_draw_available_shapes()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cpbgad7xpvgim"]
+[gd_scene load_steps=15 format=3 uid="uid://cpbgad7xpvgim"]
 
 [ext_resource type="TileSet" uid="uid://brbpok4okhehv" path="res://map_resources/world_tile_set.tres" id="1_3xljd"]
 [ext_resource type="Script" path="res://scripts/level_manager.gd" id="1_oc1xv"]
@@ -11,6 +11,7 @@
 [ext_resource type="FontFile" uid="uid://bfjao6y3cc3i" path="res://assets/fonts/MotleyForcesRegular-w1rZ3.ttf" id="7_k4dme"]
 [ext_resource type="PackedScene" uid="uid://rvp1j1c6hjh" path="res://particles/arrow_indicator.tscn" id="7_oeccr"]
 [ext_resource type="LabelSettings" uid="uid://w4vi2ub2x5dk" path="res://fonts/available_multiplier.tres" id="10_u4fb3"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="12_gphfe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rk7v1"]
 bg_color = Color(0, 0, 0, 0.658824)
@@ -129,5 +130,48 @@ focus_mode = 0
 theme_override_fonts/font = ExtResource("7_k4dme")
 theme_override_font_sizes/font_size = 128
 text = "RETRY"
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+process_mode = 3
+visible = false
+script = ExtResource("12_gphfe")
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.151276, 0.151276, 0.151276, 0.662745)
+
+[node name="CenterContainer" type="CenterContainer" parent="PauseMenu"]
+custom_minimum_size = Vector2(150, 400)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.0
+offset_top = -136.0
+offset_right = 323.0
+offset_bottom = 264.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/CenterContainer"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_k4dme")
+theme_override_font_sizes/font_size = 128
+text = "Resume"
+
+[node name="Exit" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_k4dme")
+theme_override_font_sizes/font_size = 128
+text = "ExIT"
 
 [connection signal="body_entered" from="Goal" to="Goal" method="_on_LevelCompleteTrigger_body_entered"]

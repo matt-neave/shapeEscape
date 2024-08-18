@@ -47,11 +47,12 @@ func _adjust_camera_limits():
 	# Scale by the tile size.
 	rect.size *= tilemap.tile_set.tile_size
 	rect.position *= tilemap.tile_set.tile_size
-	print(rect)
 	camera_2d.limit_left = rect.position.x
 	camera_2d.limit_right = rect.position.x + rect.size.x
 	camera_2d.limit_top = rect.position.y
 	camera_2d.limit_bottom = rect.position.y + rect.size.y
+	print(rect)
+	print(camera_2d.limit_bottom)
 
 func _sprite_direction():
 	if velocity.x < 0:

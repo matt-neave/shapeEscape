@@ -9,6 +9,7 @@ enum GameState {
 @onready var reset_button = $CanvasLayer/Retry
 @onready var phase_1_camera: Camera2D = $Phase1Camera
 @onready var ui = $UI
+@onready var indicators = $Indicators
 
 const PLAYER = preload("res://scenes/player.tscn")
 
@@ -24,13 +25,13 @@ func _ready():
 func _process(delta):
 	pass
 
-
 func _toggle_game_state():
 	SoundManager.play_sound(SoundManager.SOUNDS.BUTTON_CLICK)
 	_start_game()
 
 func _start_game():
 	game_state = GameState.PLAY
+	indicators.hide()
 	ui.hide()
 	var player = PLAYER.instantiate()
 	add_child(player)
@@ -38,6 +39,7 @@ func _start_game():
 
 func _reset_game():
 	game_state = GameState.BUILD
+	indicators.show()
 	ui.show()
 	SoundManager.play_sound(SoundManager.SOUNDS.BUTTON_CLICK)
 	

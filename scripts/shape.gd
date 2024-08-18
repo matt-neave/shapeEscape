@@ -11,6 +11,6 @@ class_name BuildingShape
 @export var blocks: Dictionary = {
 	Vector2i(0, 0): root
 }
-
+@export var color: Color = Color(0,0,0)
 func size():
 	return blocks.size()

@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_locbo"]
 radius = 25.0
-height = 90.0
+height = 78.0
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(0, -36)
@@ -23,5 +23,5 @@ region_enabled = true
 region_rect = Rect2(9, 9, 14, 20)
 
 [node name="PlayerWorldCollider" type="CollisionShape2D" parent="."]
-position = Vector2(0, -9)
+position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_locbo")

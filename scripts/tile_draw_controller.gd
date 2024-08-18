@@ -71,6 +71,8 @@ func _check_scale_shape(scale=1, multiplayer_ui = null):
 			_scale_shape(shape_to_scale, scale)
 
 func _scale_shape(shape, scale):
+	var new_blocks = {}
+
 	# Project each block (including the root) by the scale in the direction of the block
 	for block_pos in shape.blocks.keys():
 		var block = shape.blocks[block_pos]
@@ -82,19 +84,25 @@ func _scale_shape(shape, scale):
 			BuildingBlock.Direction.UP:
 				block.direction = BuildingBlock.Direction.NONE
 				for i in range(scale):
+					new_blocks[block_pos + Vector2i(0, i)] = block
 					_place_block(global_pos + Vector2i(0, i), block)
 			BuildingBlock.Direction.DOWN:
 				block.direction = BuildingBlock.Direction.NONE
 				for i in range(scale):
+					new_blocks[block_pos - Vector2i(0, i)] = block
 					_place_block(global_pos - Vector2i(0, i), block)
 			BuildingBlock.Direction.LEFT:
 				block.direction = BuildingBlock.Direction.NONE
 				for i in range(scale):
+					new_blocks[block_pos - Vector2i(i, 0)] = block
 					_place_block(global_pos - Vector2i(i, 0), block)
 			BuildingBlock.Direction.RIGHT:
 				block.direction = BuildingBlock.Direction.NONE
 				for i in range(scale):
+					new_blocks[block_pos + Vector2i(i, 0)] = block
 					_place_block(global_pos + Vector2i(i, 0), block)
+
+	shape.blocks = new_blocks
 	SoundManager.play_sound(SoundManager.SOUNDS.TILE_PLACE)
 
 func _place_block(global_pos, block, layer=1):

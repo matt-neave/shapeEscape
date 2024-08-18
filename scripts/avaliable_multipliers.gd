@@ -6,11 +6,8 @@ const AVAILABLE_MULTIPLIER = preload("res://scenes/available_multiplier.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# Testing multipliers
-	multipliers.append(2)
-	multipliers.append(2)
-
-	_draw_multiplier_ui()
+	fetch_ui_data()
+	add_to_group("ui_control")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -21,3 +18,10 @@ func _draw_multiplier_ui():
 		var new_multiplier = AVAILABLE_MULTIPLIER.instantiate()
 		new_multiplier.multiplier = multiplier
 		shape_container.add_child(new_multiplier)
+
+func fetch_ui_data():
+	for child in shape_container.get_children():
+		child.queue_free()
+		
+	multipliers = GameManager.get_multipliers_for_level()
+	_draw_multiplier_ui()

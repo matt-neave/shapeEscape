@@ -74,3 +74,6 @@ func get_shapes_for_level() -> Array:
 	shapes.append(shape3)
 
 	return shapes
+
+func get_multipliers_for_level() -> Array:
+	return [2, 2]

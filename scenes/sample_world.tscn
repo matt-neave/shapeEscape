@@ -88,4 +88,19 @@ position = Vector2(-730, -94)
 [node name="GoalIndicator" parent="Indicators" instance=ExtResource("7_oeccr")]
 position = Vector2(701, -675)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -47.0
+offset_right = 344.0
+offset_bottom = 183.0
+grow_horizontal = 2
+scale = Vector2(0.25, 0.25)
+focus_mode = 0
+theme_override_font_sizes/font_size = 128
+text = "RETRY"
+
 [connection signal="body_entered" from="Goal" to="Goal" method="_on_LevelCompleteTrigger_body_entered"]

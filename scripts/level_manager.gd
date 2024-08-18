@@ -6,6 +6,7 @@ enum GameState {
 }
 
 @onready var start_button: Button = $UI/StartButton
+@onready var reset_button = $CanvasLayer/Button
 @onready var phase_1_camera: Camera2D = $Phase1Camera
 @onready var ui = $UI
 
@@ -16,7 +17,8 @@ var game_state = GameState.BUILD
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	start_button.pressed.connect(_toggle_game_state)
-
+	reset_button.pressed.connect(_reset_game)
+	_reset_game()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -24,24 +26,19 @@ func _process(delta):
 
 
 func _toggle_game_state():
-	match game_state:
-		GameState.BUILD:
-			_start_game()
-		GameState.PLAY:
-			_reset_game()
+	_start_game()
 
 func _start_game():
 	game_state = GameState.PLAY
 	ui.hide()
 	var player = PLAYER.instantiate()
 	add_child(player)
-	start_button.text = "Retry"
 	
 
 func _reset_game():
 	game_state = GameState.BUILD
 	ui.show()
-	start_button.text = "Go"
+	SoundManager.play_music(SoundManager.SOUNDS.BUILD_MUSIC)
 	
 	# Remove the player
 	for child in get_children():

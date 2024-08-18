@@ -104,10 +104,7 @@ func get_shapes_for_level() -> Array:
 			shape.blocks[Vector2i(block_tuple[1], block_tuple[2])] = block
 		
 		shapes.append(shape)
-	
-	var length_of_shapes = shapes.size()
-	print("Number of shapes: ", length_of_shapes)
-	
+		
 	return shapes
 
 func get_multipliers_for_level() -> Array:

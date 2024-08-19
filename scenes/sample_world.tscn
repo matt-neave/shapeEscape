@@ -177,6 +177,12 @@ theme_override_fonts/font = ExtResource("7_k4dme")
 theme_override_font_sizes/font_size = 75
 text = "Back to Levels"
 
+[node name="ExitGame" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_k4dme")
+theme_override_font_sizes/font_size = 75
+text = "Exit Game"
+
 [node name="LevelComplete" type="CanvasLayer" parent="."]
 process_mode = 3
 visible = false

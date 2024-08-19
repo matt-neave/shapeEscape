@@ -37,6 +37,9 @@ var current_level_index = 0
 
 var current_state: GameState = GameState.MENU
 
+var level_unlocked = [true, false]
+var level_completed = [false, false]
+
 func _ready():
 	_test_shapes()
 	_go_to_menu()
@@ -50,15 +53,39 @@ func _go_to_level_select():
 	current_state = GameState.LEVEL_SELECT
 	get_tree().change_scene_to_file("res://scenes/level_select.tscn")
 
-func _start_level(level_path: String):
-	level_path = levels[current_level_index]
-	current_state = GameState.GAMEPLAY
-	get_tree().change_scene_to_file(level_path)
+#func _start_level(level_path: String):
+	#level_path = levels[current_level_index]
+	#current_state = GameState.GAMEPLAY
+	#get_tree().change_scene_to_file(level_path)
+	
+func _start_level(level_index: int):
+	if level_unlocked[level_index]:
+		current_level_index = level_index
+		current_state = GameState.GAMEPLAY
+		var level_path = levels[current_level_index]
+		get_tree().change_scene_to_file(level_path)
+	else:
+		print("Level is locked!")
+
+#func _on_level_complete():
+	#current_level_index += 1
+	#_go_to_level_select()
 
 func _on_level_complete():
-	current_level_index += 1
-	_go_to_level_select()
+	level_completed[current_level_index] = true
 	
+	# Unlock the next level if it exists
+	if current_level_index + 1 < level_unlocked.size():
+		level_unlocked[current_level_index + 1] = true
+	
+	_go_to_level_select()
+
+	
+	# Optionally return to level select or reset the game for replay
+	#_reset_game()
+	
+
+
 func _test_shapes():
 	# Create some testing shapes, consisting of a 1x1 and a 2x1
 	var shape1 = BuildingShape.new()

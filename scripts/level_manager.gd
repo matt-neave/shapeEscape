@@ -27,10 +27,6 @@ func _ready():
 func _process(delta):
 	pass
 
-func _toggle_game_state():
-	SoundManager.play_sound(SoundManager.SOUNDS.BUTTON_CLICK)
-	_start_game()
-
 func _start_game():
 	game_state = GameState.PLAY
 	indicators.hide()
@@ -38,9 +34,11 @@ func _start_game():
 	var player = PLAYER.instantiate()
 	add_child(player)
 	
+func _toggle_game_state():
+	SoundManager.play_sound(SoundManager.SOUNDS.BUTTON_CLICK)
+	_start_game()
 
-func _reset_game():
-	
+func _reset_game():	
 	SoundManager.play_sound(SoundManager.SOUNDS.BUTTON_CLICK)
 	
 	# Remove the player	
@@ -54,7 +52,6 @@ func _reset_game():
 		await get_tree().create_timer(retry_particles.lifetime).timeout
 		retry_particles.queue_free()
 		player.queue_free()
-		
 		
 	game_state = GameState.BUILD
 	indicators.show()

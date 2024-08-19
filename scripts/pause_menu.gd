@@ -1,19 +1,19 @@
 extends CanvasLayer
 
 @onready var resume = $CenterContainer/VBoxContainer/Resume
-@onready var exit = $CenterContainer/VBoxContainer/Exit
+@onready var back_to_level_map = $CenterContainer/VBoxContainer/BackToLevelMap
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("pause")
 	resume.pressed.connect(pause)
-	exit.pressed.connect(_exit)
+	back_to_level_map.pressed.connect(_back_to_level_map)
 	
 func pause():
 	get_tree().paused = !get_tree().paused
 	visible = !visible
 
-func _exit():
+func _back_to_level_map():
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/level_select.tscn")
 

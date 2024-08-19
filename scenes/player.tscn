@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6bm4f81i0hg8"]
+[gd_scene load_steps=10 format=3 uid="uid://c6bm4f81i0hg8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_8keo0"]
 [ext_resource type="Texture2D" uid="uid://cyt04jeuchhts" path="res://assets/sprites/body_run.png" id="2_fc87x"]
+[ext_resource type="Texture2D" uid="uid://bfen3jxy860rl" path="res://assets/sprites/basic_particles/blob_0.png" id="3_imr5n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5e0ac"]
 size = Vector2(61, 60)
@@ -55,35 +56,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_wuv8s"]
-resource_name = "run"
-length = 0.3
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerBody:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.075, 0.15, 0.225),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [4, 5, 6, 7]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerBody:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(16, -11)]
 }
 
 [sub_resource type="Animation" id="Animation_mcoq7"]
@@ -154,6 +126,35 @@ tracks/1/keys = {
 "values": [Vector2(16, -1)]
 }
 
+[sub_resource type="Animation" id="Animation_wuv8s"]
+resource_name = "run"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerBody:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.075, 0.15, 0.225),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerBody:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, -11)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hmn0i"]
 _data = {
 "RESET": SubResource("Animation_4vttm"),
@@ -187,3 +188,35 @@ libraries = {
 "": SubResource("AnimationLibrary_hmn0i")
 }
 autoplay = "idle"
+
+[node name="RunningParticles" type="CPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(-5, 25)
+lifetime = 0.3
+texture = ExtResource("3_imr5n")
+emission_shape = 3
+emission_rect_extents = Vector2(10, 1)
+gravity = Vector2(0, 0)
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.15
+scale_amount_max = 0.3
+
+[node name="JumpingParticles" type="CPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(-5, 25)
+emitting = false
+amount = 10
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.8
+texture = ExtResource("3_imr5n")
+emission_shape = 3
+emission_rect_extents = Vector2(10, 1)
+direction = Vector2(0, 1)
+spread = 70.0
+gravity = Vector2(0, 600)
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.15
+scale_amount_max = 0.3

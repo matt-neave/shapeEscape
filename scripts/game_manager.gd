@@ -19,7 +19,7 @@ var level_data = [
 			[["right", 0, 0]],
 			[["right", 0, 0], ["left", 2, -1]],
 		],
-		"multipliers" = [2, 2, 2]
+		"multipliers" = [2, 2, 2, 2, 2, 2, 2, 2]
 	},
 	#{
 		#"shapes" = [],

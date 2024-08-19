@@ -22,8 +22,12 @@ offset_right = 451.0
 offset_bottom = 81.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_8bj4x")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
 layout_mode = 0
-offset_right = 451.0
-offset_bottom = 81.0
-theme_override_constants/separation = 0
+offset_right = 452.0
+offset_bottom = 82.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

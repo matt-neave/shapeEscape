@@ -38,7 +38,7 @@ func generate_level_buttons() -> void:
 		button.text = "Level %d" % i
 		button.name = "Level%d" % i
 		
-		if i <= GameManager.get_unlocked_levels():
+		if GameManager.level_data[i - 1]["unlocked"]:
 			button.pressed.connect(_on_level_button_pressed.bind(i))
 		else:
 			button.disabled = true  # the level is locked

@@ -17,26 +17,30 @@ var level_data = [
 		"shapes" = [
 			[["none", 0, 0], ["none", 1, 0]],
 		],
-		"multipliers" = []
+		"multipliers" = [],
+		"unlocked" = true
 	},
 	{
 		"shapes" = [
 			[["right", 0, 0]],
 		],
-		"multipliers" = [4]
+		"multipliers" = [4],
+		"unlocked" = false
 	},
 	{
 		"shapes" = [
 			[["none", 0, 0], ["up", 1, 0]],
 		],
-		"multipliers" = [3]
+		"multipliers" = [3],
+		"unlocked" = false
 	},
 	{
 		"shapes" = [
 			[["none", 0, 0], ["left", 0, 1], ["none", 1, 0]],
 			[["right", 0, 0]],
 		],
-		"multipliers" = [2, 2]
+		"multipliers" = [2, 2],
+		"unlocked" = false
 	},
 	{
 		"shapes" = [
@@ -44,7 +48,8 @@ var level_data = [
 			[["right", 0, 0]],
 			[["right", 0, 0], ["left", 2, -1]],
 		],
-		"multipliers" = [2, 2, 3, 2, 2, 2]
+		"multipliers" = [2, 2, 3, 2, 2, 2],
+		"unlocked" = false
 	},
 	#{
 		#"shapes" = [],
@@ -58,22 +63,18 @@ var level_data = [
 
 var level = 0
 var levels = ["res://scenes/sample_world.tscn"]
-var level_unlocked = [true, false, false, false, false]
-
 var current_level_index = 0
 var current_state: GameState = GameState.MENU
 
 func unlock_next_level():
-	for i in range(level_unlocked.size()):
-		if !level_unlocked[i]:
-			level_unlocked[i] = true
-			break
+	if current_level_index + 1 < level_data.size():
+		level_data[current_level_index + 1]["unlocked"] = true
 
 func get_unlocked_levels() -> int:
-	for i in range(level_unlocked.size()):
-		if !level_unlocked[i]:
+	for i in range(level_data.size()):
+		if !level_data[i]["unlocked"]:
 			return i
-	return level_unlocked.size() # All levels are unlocked
+	return level_data.size()  # All levels are unlocked
 
 func _ready():
 	_test_shapes()
@@ -94,7 +95,7 @@ func _go_to_level_select():
 	#get_tree().change_scene_to_file(level_path)
 	
 func _start_level(level_index: int):
-	if level_unlocked[level_index]:
+	if level_data[level_index]["unlocked"]:
 		current_level_index = (level_index)
 		current_state = GameState.GAMEPLAY
 		var level_path = levels[current_level_index]

@@ -55,7 +55,6 @@ func exit_placement_mode(shape, shape_ui):
 	placement_mode = false
 
 func _can_place_shape_at_current_position() -> bool:
-
 	# Check if the cells where the shape would be placed are already occupied
 	for block_pos in shape.blocks.keys():
 		var global_pos = shape.global_position + block_pos

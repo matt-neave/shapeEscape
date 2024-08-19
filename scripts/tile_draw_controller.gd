@@ -4,6 +4,7 @@ extends TileMap
 @onready var tile_particles = $"../TileParticles"
 
 const PLACEMENT_PARTICLES = preload("res://particles/placement_particles.tscn")
+const RETRY_PARTICLES = preload("res://particles/retry_particles.tscn")
 var shape
 var active_shapes = []
 
@@ -89,17 +90,17 @@ func _scale_shape(shape, scale):
 		
 		match block.direction:
 			BuildingBlock.Direction.NONE:
-				break
+				pass
 			BuildingBlock.Direction.UP:
-				block.direction = BuildingBlock.Direction.NONE
-				for i in range(scale):
-					new_blocks[block_pos + Vector2i(0, i)] = block
-					_place_block(global_pos + Vector2i(0, i), block)
-			BuildingBlock.Direction.DOWN:
 				block.direction = BuildingBlock.Direction.NONE
 				for i in range(scale):
 					new_blocks[block_pos - Vector2i(0, i)] = block
 					_place_block(global_pos - Vector2i(0, i), block)
+			BuildingBlock.Direction.DOWN:
+				block.direction = BuildingBlock.Direction.NONE
+				for i in range(scale):
+					new_blocks[block_pos + Vector2i(0, i)] = block
+					_place_block(global_pos + Vector2i(0, i), block)
 			BuildingBlock.Direction.LEFT:
 				block.direction = BuildingBlock.Direction.NONE
 				for i in range(scale):
@@ -119,9 +120,9 @@ func _place_block(global_pos, block, layer=1):
 		BuildingBlock.Direction.NONE:
 			set_cell(layer, global_pos, 0, Vector2i(0, 2))
 		BuildingBlock.Direction.UP:
-			set_cell(layer, global_pos, 0, Vector2i(1, 0))
-		BuildingBlock.Direction.DOWN:
 			set_cell(layer, global_pos, 0, Vector2i(0, 1))
+		BuildingBlock.Direction.DOWN:
+			set_cell(layer, global_pos, 0, Vector2i(1, 0))
 		BuildingBlock.Direction.LEFT:
 			set_cell(layer, global_pos, 0, Vector2i(1, 1))
 		BuildingBlock.Direction.RIGHT:
@@ -146,5 +147,11 @@ func _reset_cell(pos, layer=2):
 
 func _reset():
 	clear_layer(1)
+	
+	for active_shape in active_shapes:
+		var retry_particles = RETRY_PARTICLES.instantiate()
+		retry_particles.global_position = map_to_local(active_shape.global_position)
+		add_child(retry_particles)
+		retry_particles.emitting = true
 	active_shapes = []
 	

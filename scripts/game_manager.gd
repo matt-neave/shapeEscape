@@ -15,6 +15,31 @@ var level_shapes = [
 var level_data = [
 	{
 		"shapes" = [
+			[["none", 0, 0], ["none", 1, 0]],
+		],
+		"multipliers" = []
+	},
+	{
+		"shapes" = [
+			[["right", 0, 0]],
+		],
+		"multipliers" = [4]
+	},
+	{
+		"shapes" = [
+			[["none", 0, 0], ["up", 1, 0]],
+		],
+		"multipliers" = [3]
+	},
+	{
+		"shapes" = [
+			[["none", 0, 0], ["left", 0, 1], ["none", 1, 0]],
+			[["right", 0, 0]],
+		],
+		"multipliers" = [2, 2]
+	},
+	{
+		"shapes" = [
 			[["left", 0, 0]],
 			[["right", 0, 0]],
 			[["right", 0, 0], ["left", 2, -1]],
@@ -38,7 +63,6 @@ var current_level_index = 0
 var current_state: GameState = GameState.MENU
 
 var level_unlocked = [true, false]
-var level_completed = [false, false]
 
 func _ready():
 	_test_shapes()
@@ -72,12 +96,11 @@ func _start_level(level_index: int):
 	#_go_to_level_select()
 
 func _on_level_complete():
-	level_completed[current_level_index] = true
-	
 	# Unlock the next level if it exists
 	if current_level_index + 1 < level_unlocked.size():
 		level_unlocked[current_level_index + 1] = true
 	
+	current_level_index += 1
 	_go_to_level_select()
 
 	
@@ -127,12 +150,13 @@ func get_shapes_for_level() -> Array:
 		
 		for i in range(1, shape_tuple_list.size()):
 			var block_tuple = shape_tuple_list[i]
+			print(block_tuple)
 			var block = BuildingBlock.new()
 			block.direction = get_direction_from_string(block_tuple[0])
 			shape.blocks[Vector2i(block_tuple[1], block_tuple[2])] = block
-		
+		print(shape.blocks)
 		shapes.append(shape)
-		
+	
 	return shapes
 
 func get_multipliers_for_level() -> Array:

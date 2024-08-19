@@ -48,7 +48,7 @@ func generate_level_buttons() -> void:
 	add_child(backButton)
 		
 func _on_level_button_pressed(level: int) -> void:
-	var scene_path = "res://scenes/levels/level-%d.tscn" % level
+	var scene_path = "res://scenes/levels/level_%d.tscn" % level
 	get_tree().change_scene_to_file(scene_path)
 
 func _on_Back_pressed() -> void:

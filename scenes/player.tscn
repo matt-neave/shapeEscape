@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://c6bm4f81i0hg8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_8keo0"]
-[ext_resource type="Texture2D" uid="uid://cyt04jeuchhts" path="res://assets/sprites/body_run.png" id="2_fc87x"]
+[ext_resource type="Texture2D" uid="uid://dgtv88ghh26ie" path="res://assets/sprites/body_run_o.png" id="2_jnf1t"]
 [ext_resource type="Texture2D" uid="uid://bfen3jxy860rl" path="res://assets/sprites/basic_particles/blob_0.png" id="3_imr5n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5e0ac"]
@@ -178,7 +178,7 @@ shape = SubResource("RectangleShape2D_5e0ac")
 
 [node name="PlayerBody" type="Sprite2D" parent="Body"]
 position = Vector2(16, -9)
-texture = ExtResource("2_fc87x")
+texture = ExtResource("2_jnf1t")
 hframes = 4
 vframes = 2
 frame = 5

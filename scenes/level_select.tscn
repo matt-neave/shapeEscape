@@ -19,27 +19,3 @@ vertical_scroll_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_p1s7e")
-
-[node name="Level1" type="Button" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 128
-text = "Level 1
-"
-
-[node name="Level2" type="Button" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 128
-text = "Level 2
-"
-
-[node name="Level3" type="Button" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 128
-text = "Level 3
-"
-
-[node name="Back" type="Button" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 128
-text = "Back
-"

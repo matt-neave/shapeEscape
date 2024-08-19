@@ -9,31 +9,48 @@
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
 	#pass
-
-
+	
 extends VBoxContainer
 
-var num_levels = 1
+
+func getFilePathsByExtension(directoryPath: String, extension: String) -> int:
+	var dir = DirAccess.open(directoryPath)
+	var counter = 0
+		
+	dir.list_dir_begin()
+	var file_name = dir.get_next()
+	while file_name != "":
+		counter += 1
+		file_name = dir.get_next()
+	
+	return counter
+			
+var num_levels = getFilePathsByExtension("res://scenes/levels/", "tscn")
 
 func _ready() -> void:
 	generate_level_buttons()
-	#$Back.pressed.connect(_on_Back_pressed)
 	
 # Function to generate level buttons
 func generate_level_buttons() -> void:	
 	for i in range(1, num_levels + 1):
 		var button = Button.new()
+		button.add_theme_font_size_override("font_size", 60)
 		button.text = "Level %d" % i
 		button.name = "Level%d" % i	
-		
-		button.pressed.connect(_on_level_button_pressed)
+		button.pressed.connect(_on_level_button_pressed.bind(i))
 		add_child(button)
+	
+	var backButton = Button.new()
+	backButton.add_theme_font_size_override("font_size", 60)
+	backButton.text = "Back"
+	backButton.name = "Back"
+	backButton.pressed.connect(_on_Back_pressed)
+	add_child(backButton)
 		
-func _on_level_button_pressed() -> void:
-	var scene_path = "res://Scenes/level-%d.tscn" % 1
-	print("loading", scene_path)
+func _on_level_button_pressed(level: int) -> void:
+	var scene_path = "res://scenes/levels/level-%d.tscn" % level
 	get_tree().change_scene_to_file(scene_path)
 
 func _on_Back_pressed() -> void:
 	SoundManager.play_sound(SoundManager.SOUNDS.BUTTON_CLICK)	
-	get_tree().change_scene_to_file("res://Scenes/menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu.tscn")

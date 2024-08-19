@@ -13,27 +13,27 @@
 
 extends VBoxContainer
 
-# Function to be called when the node enters the scene tree
+var num_levels = 1
+
 func _ready() -> void:
-	# Connect button signals to the corresponding functions
-	$Level1.pressed.connect(_on_Level1_pressed)
-	#$Level2.pressed.connect(_on_Level2_pressed)
-	#$Level3.pressed.connect(_on_Level3_pressed)
-	$Back.pressed.connect(_on_Back_pressed)
+	generate_level_buttons()
+	#$Back.pressed.connect(_on_Back_pressed)
+	
+# Function to generate level buttons
+func generate_level_buttons() -> void:	
+	for i in range(1, num_levels + 1):
+		var button = Button.new()
+		button.text = "Level %d" % i
+		button.name = "Level%d" % i	
+		
+		button.pressed.connect(_on_level_button_pressed)
+		add_child(button)
+		
+func _on_level_button_pressed() -> void:
+	var scene_path = "res://Scenes/level-%d.tscn" % 1
+	print("loading", scene_path)
+	get_tree().change_scene_to_file(scene_path)
 
-# Function for when Level1 button is pressed
-func _on_Level1_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/sample_world.tscn")
-
-## Function for when Level2 button is pressed
-#func _on_Level2_pressed() -> void:
-	#get_tree().change_scene_to_file("res://Scenes/Level2.tscn")
-#
-## Function for when Level3 button is pressed
-#func _on_Level3_pressed() -> void:
-	#get_tree().change_scene_to_file("res://Scenes/Level3.tscn")
-
-# Function for when Back button is pressed
 func _on_Back_pressed() -> void:
 	SoundManager.play_sound(SoundManager.SOUNDS.BUTTON_CLICK)	
-	get_tree().change_scene_to_file("res://Scenes/menu.tscn")  # Replace with your actual menu scene path
+	get_tree().change_scene_to_file("res://Scenes/menu.tscn")

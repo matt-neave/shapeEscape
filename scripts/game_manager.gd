@@ -103,10 +103,6 @@ func _start_level(level_index: int):
 		print("Level is locked!")
 
 func _on_level_complete():
-	# Unlock the next level if it exists
-	if current_level_index + 1 < level_unlocked.size():
-		level_unlocked[current_level_index + 1] = true
-	
 	GameManager.unlock_next_level()
 	load_next_level()
 

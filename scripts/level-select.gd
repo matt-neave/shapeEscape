@@ -49,7 +49,7 @@ func generate_level_buttons() -> void:
 		
 func _on_level_button_pressed(level: int) -> void:
 	var scene_path = "res://scenes/levels/level_%d.tscn" % level
-	GameManager.current_level_index = level
+	GameManager.current_level_index = (level - 1)
 	get_tree().change_scene_to_file(scene_path)
 
 func _on_Back_pressed() -> void:

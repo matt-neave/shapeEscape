@@ -39,7 +39,8 @@ func _place_shape():
 		_place_shape_at_root(cell_pos)
 		SoundManager.play_sound(SoundManager.SOUNDS.TILE_PLACE)
 		placement_mode = false
-
+	
+	
 func enter_placement_mode(shape):
 	self.shape = shape
 	placement_mode = true

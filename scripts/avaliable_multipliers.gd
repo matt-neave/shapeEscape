@@ -1,7 +1,7 @@
 extends Control
 
 var multipliers = []
-@onready var shape_container = $Panel/HBoxContainer
+@onready var shape_container = $Panel/ScrollContainer/HBoxContainer
 const AVAILABLE_MULTIPLIER = preload("res://scenes/available_multiplier.tscn")
 
 # Called when the node enters the scene tree for the first time.

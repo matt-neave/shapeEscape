@@ -1,6 +1,6 @@
 extends Control
 
-@onready var shape_container = $Panel/HBoxContainer
+@onready var shape_container = $Panel/ScrollContainer/HBoxContainer
 var shapes = []
 var mouse_over: bool = false
 const AVAILABLE_SHAPE = preload("res://scenes/available_shape.tscn")

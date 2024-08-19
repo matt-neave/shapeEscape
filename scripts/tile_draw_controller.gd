@@ -44,12 +44,26 @@ func _place_shape():
 func enter_placement_mode(shape):
 	self.shape = shape
 	placement_mode = true
-	
+
 func exit_placement_mode(shape, shape_ui):
-	if !shapes_control.mouse_over: # if shape is successfully placed
+	if !shapes_control.mouse_over and _can_place_shape_at_current_position():
 		shape_ui.expire()
-	placement_mode = false
+	else:
+		shape_ui.visible = true
+	
 	_clear_placement_cells()
+	placement_mode = false
+
+func _can_place_shape_at_current_position() -> bool:
+
+	# Check if the cells where the shape would be placed are already occupied
+	for block_pos in shape.blocks.keys():
+		var global_pos = shape.global_position + block_pos
+		if get_used_cells(0).has(global_pos):
+			return false
+
+	return true
+
 
 func multiplier_dropped(scale, multiplier_ui):
 	_check_scale_shape(scale, multiplier_ui)

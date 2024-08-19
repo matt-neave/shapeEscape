@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -375.0
+const JUMP_VELOCITY = -750.0
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var animation_player = $Body/AnimationPlayer
 
@@ -25,8 +25,9 @@ func _physics_process(delta):
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY * 2
-
+		velocity.y = JUMP_VELOCITY
+		animation_player.play("jump")
+		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("move_left", "move_right")
@@ -63,5 +64,8 @@ func _run_animation():
 		
 	if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
 		animation_player.play("run")
+		if is_on_floor():
+			SoundManager.play_sound(SoundManager.SOUNDS.FOOT_STEP, Vector2.ZERO, 10, true)
 	elif is_on_floor() and velocity.x == 0:
+		SoundManager.kill_sound(SoundManager.SOUNDS.FOOT_STEP)
 		animation_player.play("idle")

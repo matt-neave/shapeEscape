@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6bm4f81i0hg8"]
+[gd_scene load_steps=9 format=3 uid="uid://c6bm4f81i0hg8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_8keo0"]
 [ext_resource type="Texture2D" uid="uid://cyt04jeuchhts" path="res://assets/sprites/body_run.png" id="2_fc87x"]
@@ -59,7 +59,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_wuv8s"]
 resource_name = "run"
-length = 0.4
+length = 0.3
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -68,10 +68,22 @@ tracks/0/path = NodePath("PlayerBody:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"times": PackedFloat32Array(0, 0.075, 0.15, 0.225),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerBody:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, -11)]
 }
 
 [sub_resource type="Animation" id="Animation_mcoq7"]
@@ -114,10 +126,39 @@ tracks/2/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_l27kq"]
+resource_name = "jump"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerBody:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.757813), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerBody:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, -1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hmn0i"]
 _data = {
 "RESET": SubResource("Animation_4vttm"),
 "idle": SubResource("Animation_mcoq7"),
+"jump": SubResource("Animation_l27kq"),
 "run": SubResource("Animation_wuv8s")
 }
 
@@ -139,6 +180,7 @@ position = Vector2(16, -9)
 texture = ExtResource("2_fc87x")
 hframes = 4
 vframes = 2
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Body"]
 libraries = {

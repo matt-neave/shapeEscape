@@ -8,7 +8,8 @@ func _ready() -> void:
 # Function called when another body enters the trigger area
 func _on_LevelCompleteTrigger_body_entered(body):
 	if body.name == "Player":  # Assuming your player character's name is "Player"
-		GameManager._on_level_complete()  # Call the level complete function
+		SoundManager.play_sound(SoundManager.SOUNDS.LEVEL_COMPLETE, Vector2.ZERO, -10)
+		get_parent().get_node("LevelComplete").show()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

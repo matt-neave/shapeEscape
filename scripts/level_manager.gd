@@ -5,6 +5,8 @@ enum GameState {
 	PLAY
 }
 
+const RETRY_PARTICLES = preload("res://particles/retry_particles.tscn")
+
 @onready var start_button: Button = $UI/StartButton
 @onready var reset_button = $CanvasLayer/Retry
 @onready var phase_1_camera: Camera2D = $Phase1Camera
@@ -38,15 +40,25 @@ func _start_game():
 	
 
 func _reset_game():
+	
+	SoundManager.play_sound(SoundManager.SOUNDS.BUTTON_CLICK)
+	
+	# Remove the player	
+	var player = get_node_or_null("Player")
+	if player:
+		player.hide()
+		var retry_particles = RETRY_PARTICLES.instantiate()
+		retry_particles.global_position = player.global_position
+		add_child(retry_particles)
+		retry_particles.emitting = true
+		await get_tree().create_timer(retry_particles.lifetime).timeout
+		retry_particles.queue_free()
+		player.queue_free()
+		
+		
 	game_state = GameState.BUILD
 	indicators.show()
 	ui.show()
-	SoundManager.play_sound(SoundManager.SOUNDS.BUTTON_CLICK)
-	
-	# Remove the player
-	for child in get_children():
-		if child.name == "Player":
-			child.queue_free()
 			
 	# Set camera
 	phase_1_camera.make_current()

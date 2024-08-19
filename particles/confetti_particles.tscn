@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://hb3225in5b7u"]
+
+[ext_resource type="Texture2D" uid="uid://dwhobjr1m8kcf" path="res://assets/tiles/basic_block.png" id="1_76jpt"]
+
+[sub_resource type="Gradient" id="Gradient_awbfc"]
+colors = PackedColorArray(1, 1, 1, 0.447059, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_r0pac"]
+offsets = PackedFloat32Array(0, 0.19375, 0.40625, 0.634375, 0.83125, 1)
+colors = PackedColorArray(0.829512, 0.459831, 0.438717, 1, 0.737207, 0.575746, 0.876505, 1, 0.484408, 0.792659, 0.917553, 1, 0.720572, 0.895555, 0.682899, 1, 0.910437, 0.750373, 0.450916, 1, 1, 1, 1, 1)
+
+[node name="ConfettiParticles" type="CPUParticles2D"]
+lifetime = 3.0
+explosiveness = 1.0
+texture = ExtResource("1_76jpt")
+emission_shape = 1
+emission_sphere_radius = 3.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 200)
+initial_velocity_min = 200.0
+initial_velocity_max = 400.0
+angular_velocity_min = 10.0
+angular_velocity_max = 10.0
+scale_amount_min = 0.3
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_awbfc")
+color_initial_ramp = SubResource("Gradient_r0pac")

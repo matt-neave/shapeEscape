@@ -100,7 +100,6 @@ func _on_level_complete():
 	if current_level_index + 1 < level_unlocked.size():
 		level_unlocked[current_level_index + 1] = true
 	
-	current_level_index += 1
 	_go_to_level_select()
 
 	

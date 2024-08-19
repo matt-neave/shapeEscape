@@ -58,11 +58,22 @@ var level_data = [
 
 var level = 0
 var levels = ["res://scenes/sample_world.tscn"]
-var current_level_index = 0
+var level_unlocked = [true, false, false, false, false]
 
+var current_level_index = 0
 var current_state: GameState = GameState.MENU
 
-var level_unlocked = [true, false]
+func unlock_next_level():
+	for i in range(level_unlocked.size()):
+		if !level_unlocked[i]:
+			level_unlocked[i] = true
+			break
+
+func get_unlocked_levels() -> int:
+	for i in range(level_unlocked.size()):
+		if !level_unlocked[i]:
+			return i
+	return level_unlocked.size() # All levels are unlocked
 
 func _ready():
 	_test_shapes()
@@ -96,6 +107,7 @@ func _on_level_complete():
 	if current_level_index + 1 < level_unlocked.size():
 		level_unlocked[current_level_index + 1] = true
 	
+	GameManager.unlock_next_level()
 	load_next_level()
 
 func load_next_level():

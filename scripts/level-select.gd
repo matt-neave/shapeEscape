@@ -36,8 +36,13 @@ func generate_level_buttons() -> void:
 		var button = Button.new()
 		button.add_theme_font_size_override("font_size", 60)
 		button.text = "Level %d" % i
-		button.name = "Level%d" % i	
-		button.pressed.connect(_on_level_button_pressed.bind(i))
+		button.name = "Level%d" % i
+		
+		if i <= GameManager.get_unlocked_levels():
+			button.pressed.connect(_on_level_button_pressed.bind(i))
+		else:
+			button.disabled = true  # the level is locked
+		
 		add_child(button)
 	
 	var backButton = Button.new()

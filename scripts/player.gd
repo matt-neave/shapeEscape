@@ -5,7 +5,6 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -375.0
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var animation_player = $Body/AnimationPlayer
-@onready var feet_animation = $Body/FeetAnimation
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -61,11 +60,8 @@ func _sprite_direction():
 		$Body.scale.x = abs($Body.scale.x)
 
 func _run_animation():
-	if velocity.x != 0:
-		feet_animation.play("run")
 		
-	if Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right"):
+	if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
 		animation_player.play("run")
 	elif is_on_floor() and velocity.x == 0:
 		animation_player.play("idle")
-		feet_animation.pause()

@@ -1,12 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3fehnst8hryr"]
+[gd_scene load_steps=6 format=3 uid="uid://b3fehnst8hryr"]
 
 [ext_resource type="PackedScene" uid="uid://dmv0xiogkamh2" path="res://scenes/shape_sprite.tscn" id="1_474m2"]
 [ext_resource type="Script" path="res://scripts/available_shape.gd" id="1_supkt"]
 [ext_resource type="Script" path="res://scripts/block_drag.gd" id="2_54qop"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iah11"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2bbla"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nf5pf"]
 
@@ -39,7 +37,6 @@ layout_mode = 0
 offset_right = 84.0
 offset_bottom = 80.0
 focus_mode = 0
-theme_override_styles/hover = SubResource("StyleBoxEmpty_2bbla")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_nf5pf")
 script = ExtResource("2_54qop")
 

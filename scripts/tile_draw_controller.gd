@@ -56,14 +56,26 @@ func _can_place_shape_at_current_position() -> bool:
 	# Check if the cells where the shape would be placed are already occupied
 	var mouse_pos = get_global_mouse_position()
 	var cell_pos = local_to_map(mouse_pos)
+	
 
+	var used = _get_used_rect(0)	
 	for block_pos in shape.blocks.keys():
 		var global_pos = cell_pos + block_pos
 		if get_used_cells(0).has(global_pos) or get_used_cells(1).has(global_pos):
 			return false
 
+		print(global_pos)
+		if !used.has_point(global_pos):
+			return false
+
 	return true
 
+func _get_used_rect(layer = 0):
+	var used = get_used_cells(layer)
+	var rect = Rect2()
+	for cell in used:
+		rect = rect.merge(Rect2(cell, Vector2(1, 1)))
+	return rect
 
 func multiplier_dropped(scale, multiplier_ui):
 	_check_scale_shape(scale, multiplier_ui)

@@ -14,6 +14,7 @@ func _process(delta):
 	pass
 
 func _draw_multiplier_ui():
+	multipliers.sort()
 	for multiplier in multipliers:
 		var new_multiplier = AVAILABLE_MULTIPLIER.instantiate()
 		new_multiplier.multiplier = multiplier

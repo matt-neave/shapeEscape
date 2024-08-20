@@ -11,7 +11,8 @@
 	#pass
 	
 extends VBoxContainer
-
+@onready var back_button = $"../../BackButton"
+const FONT: Font = preload("res://assets/fonts/MotleyForcesRegular-w1rZ3.ttf")
 
 func getFilePathsByExtension(directoryPath: String, extension: String) -> int:
 	var dir = DirAccess.open(directoryPath)
@@ -37,7 +38,7 @@ func generate_level_buttons() -> void:
 		button.add_theme_font_size_override("font_size", 60)
 		button.text = "Level %d" % i
 		button.name = "Level%d" % i
-		
+		button.add_theme_font_override("font", FONT)
 		if GameManager.level_data[i - 1]["unlocked"]:
 			button.pressed.connect(_on_level_button_pressed.bind(i))
 		else:
@@ -45,12 +46,8 @@ func generate_level_buttons() -> void:
 		
 		add_child(button)
 	
-	var backButton = Button.new()
-	backButton.add_theme_font_size_override("font_size", 60)
-	backButton.text = "Back"
-	backButton.name = "Back"
-	backButton.pressed.connect(_on_Back_pressed)
-	add_child(backButton)
+	back_button.pressed.connect(_on_Back_pressed)
+
 		
 func _on_level_button_pressed(level: int) -> void:
 	var scene_path = "res://scenes/levels/level_%d.tscn" % level

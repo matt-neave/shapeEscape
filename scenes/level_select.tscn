@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bsdln3h82ser3"]
+[gd_scene load_steps=5 format=3 uid="uid://bsdln3h82ser3"]
 
 [ext_resource type="Script" path="res://scripts/level-select.gd" id="1_p1s7e"]
+[ext_resource type="PackedScene" uid="uid://xfns54a7n5eb" path="res://particles/background_particles.tscn" id="2_ubu67"]
+[ext_resource type="LabelSettings" uid="uid://w4vi2ub2x5dk" path="res://fonts/available_multiplier.tres" id="3_85qdp"]
+[ext_resource type="FontFile" uid="uid://bfjao6y3cc3i" path="res://assets/fonts/MotleyForcesRegular-w1rZ3.ttf" id="4_y6oj5"]
 
 [node name="LevelSelect" type="Control"]
 layout_mode = 3
@@ -8,10 +11,10 @@ anchors_preset = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
-offset_left = -1.99997
-offset_top = -1.0
-offset_right = 1148.0
-offset_bottom = 649.0
+offset_left = 271.0
+offset_top = 152.0
+offset_right = 897.0
+offset_bottom = 506.0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
@@ -19,3 +22,27 @@ vertical_scroll_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_p1s7e")
+
+[node name="BackgroundParticles" parent="." instance=ExtResource("2_ubu67")]
+position = Vector2(551, 321)
+amount = 32
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 407.0
+offset_top = 56.0
+offset_right = 2078.0
+offset_bottom = 260.0
+scale = Vector2(0.2, 0.2)
+text = "Select a Level"
+label_settings = ExtResource("3_85qdp")
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 506.0
+offset_top = 557.0
+offset_right = 648.0
+offset_bottom = 613.0
+theme_override_fonts/font = ExtResource("4_y6oj5")
+theme_override_font_sizes/font_size = 60
+text = "Back"

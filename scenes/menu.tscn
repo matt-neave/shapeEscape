@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccwmoxj4dhdc8"]
+[gd_scene load_steps=6 format=3 uid="uid://ccwmoxj4dhdc8"]
 
 [ext_resource type="LabelSettings" uid="uid://w4vi2ub2x5dk" path="res://fonts/available_multiplier.tres" id="1_7kfud"]
 [ext_resource type="Script" path="res://scripts/start_button.gd" id="1_i7b7b"]
 [ext_resource type="Script" path="res://scripts/exit_button.gd" id="1_jacub"]
+[ext_resource type="FontFile" uid="uid://bfjao6y3cc3i" path="res://assets/fonts/MotleyForcesRegular-w1rZ3.ttf" id="3_ixp0u"]
 [ext_resource type="PackedScene" uid="uid://xfns54a7n5eb" path="res://particles/background_particles.tscn" id="3_uphow"]
 
 [node name="Menu" type="Control"]
@@ -41,12 +42,14 @@ layout_mode = 2
 
 [node name="Start" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ixp0u")
 theme_override_font_sizes/font_size = 128
 text = "Start Game"
 script = ExtResource("1_i7b7b")
 
 [node name="Exit" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ixp0u")
 theme_override_font_sizes/font_size = 128
 text = "Exit
 "

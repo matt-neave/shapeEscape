@@ -242,5 +242,6 @@ func _reset():
 	active_shapes = []
 	undo_state = []
 	undo_actions = []
+	undo_blocks = []
 	active_shapes_stack = []
 	

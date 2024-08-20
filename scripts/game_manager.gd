@@ -83,15 +83,15 @@ var level_data = [
 		"multipliers" = [2, 3, 3, 3, 4],
 		"unlocked" = false,
 	},
-	{
-		"shapes" = [
-			[["left", 0, 0]],
-			[["right", 0, 0]],
-			[["right", 0, 0], ["left", 2, -1]],
-		],
-		"multipliers" = [2, 2, 3, 2, 2, 2],
-		"unlocked" = false
-	},
+	#{ Level X
+		#"shapes" = [
+			#[["left", 0, 0]],
+			#[["right", 0, 0]],
+			#[["right", 0, 0], ["left", 2, -1]],
+		#],
+		#"multipliers" = [2, 2, 3, 2, 2, 2],
+		#"unlocked" = false
+	#},
 ]
 
 var level = 0
@@ -132,7 +132,7 @@ func _go_to_level_select():
 #func _start_level(level_path: String):
 	#level_path = levels[current_level_index]
 	#current_state = GameState.GAMEPLAY
-	#get_tree().change_scene_to_file(level_path)
+	#get_tree().changnext_levele_scene_to_file(level_path)
 	
 func _start_level(level_index: int):
 	level_time = 0.0
@@ -151,10 +151,12 @@ func _on_level_complete():
 func load_next_level():
 	level_time = 0.0
 	current_level_index += 1
-	current_state = GameState.GAMEPLAY	
-	var scene_path = "res://scenes/levels/level_%d.tscn" % (current_level_index + 1)
-	get_tree().change_scene_to_file(scene_path)
-
+	current_state = GameState.GAMEPLAY
+	if current_level_index < level_data.size():
+		var scene_path = "res://scenes/levels/level_%d.tscn" % (current_level_index + 1)
+		get_tree().change_scene_to_file(scene_path)
+	else:
+		get_tree().change_scene_to_file("res://scenes/level_select.tscn")
 
 func _test_shapes():
 	# Create some testing shapes, consisting of a 1x1 and a 2x1

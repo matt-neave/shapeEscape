@@ -13,8 +13,17 @@ func _ready():
 	add_to_group("undo_shape")
 	
 	
-func push_back_shape(shape):
-	undo_shapes.append(shape.duplicate())
+func push_back_shape(shape: BuildingShape):
+	
+	var prev_shape = BuildingShape.new()
+	
+	for cell in shape.blocks.keys():
+		var block = shape.blocks[cell]
+		var new_block = BuildingBlock.new()
+		new_block.direction = block.direction
+		prev_shape.blocks[cell] = new_block
+		
+	undo_shapes.append(prev_shape)
 	
 func undo():
 	if undo_shapes.size() > 0:

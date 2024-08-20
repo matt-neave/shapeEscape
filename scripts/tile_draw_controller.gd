@@ -8,6 +8,7 @@ const PLACEMENT_PARTICLES = preload("res://particles/placement_particles.tscn")
 const RETRY_PARTICLES = preload("res://particles/block_destroy_particles.tscn")
 var shape
 var active_shapes = []
+
 var undo_state = []
 var undo_actions = []
 var active_shapes_stack = []

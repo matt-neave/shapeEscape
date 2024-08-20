@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://4kog6fvo3jbx"]
+
+[ext_resource type="LabelSettings" uid="uid://w4vi2ub2x5dk" path="res://fonts/available_multiplier.tres" id="1_g5n1g"]
+[ext_resource type="FontFile" uid="uid://bfjao6y3cc3i" path="res://assets/fonts/MotleyForcesRegular-w1rZ3.ttf" id="2_t1sjv"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="LevelTime" type="Label" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.396078)
+offset_left = 325.0
+offset_top = 64.0
+offset_right = 1785.0
+offset_bottom = 268.0
+scale = Vector2(0.15, 0.15)
+text = "<0.00>"
+label_settings = ExtResource("1_g5n1g")
+horizontal_alignment = 1
+
+[node name="TotalTime" type="Label" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.396078)
+offset_left = 641.0
+offset_top = 64.0
+offset_right = 2111.0
+offset_bottom = 268.0
+scale = Vector2(0.15, 0.15)
+text = "<0.00>"
+label_settings = ExtResource("1_g5n1g")
+horizontal_alignment = 1
+
+[node name="Retry" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.514
+anchor_top = 0.029
+anchor_right = 0.514
+anchor_bottom = 0.029
+offset_left = 2.87201
+offset_top = -22.792
+offset_right = 393.872
+offset_bottom = 160.208
+grow_horizontal = 2
+scale = Vector2(0.25, 0.25)
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_t1sjv")
+theme_override_font_sizes/font_size = 128
+text = "RETRY"
+
+[node name="Undo" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.514
+anchor_top = 0.029
+anchor_right = 0.514
+anchor_bottom = 0.029
+offset_left = -104.128
+offset_top = -22.792
+offset_right = 286.872
+offset_bottom = 160.208
+grow_horizontal = 2
+scale = Vector2(0.25, 0.25)
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_t1sjv")
+theme_override_font_sizes/font_size = 128
+text = "UNDO
+"

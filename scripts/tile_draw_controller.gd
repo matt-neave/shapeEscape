@@ -2,17 +2,22 @@ extends TileMap
 
 @export var shapes_control: Control
 @onready var tile_particles = $"../TileParticles"
+@onready var undo_button = $"../HUD/Undo"
 
 const PLACEMENT_PARTICLES = preload("res://particles/placement_particles.tscn")
 const RETRY_PARTICLES = preload("res://particles/block_destroy_particles.tscn")
 var shape
 var active_shapes = []
+var undo_state = []
+var undo_actions = []
+var active_shapes_stack = []
 
 var placement_mode = false
 var prev_pos
-
+var actions = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	undo_button.pressed.connect(undo)
 	add_to_group("tile_control")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,13 +42,39 @@ func _place_shape():
 		SoundManager.play_sound(SoundManager.SOUNDS.TILE_PLACE)
 		placement_mode = false
 	
+func _push_undo_stack():
+	active_shapes_stack.append(active_shapes.duplicate())
+	undo_state.append({
+		Vector2i(0, 2): get_used_cells_by_id(1, -1, Vector2i(0, 2)),
+		Vector2i(0, 0): get_used_cells_by_id(1, -1, Vector2i(0, 0)),
+		Vector2i(1, 1): get_used_cells_by_id(1, -1, Vector2i(1, 1)),
+		Vector2i(0, 1): get_used_cells_by_id(1, -1, Vector2i(0, 1)),
+		Vector2i(1, 0): get_used_cells_by_id(1, -1, Vector2i(1, 0)),
+	})
+
+func undo():
 	
+	if undo_state.size() > 0:
+		var undo_action = undo_actions.pop_back()
+		if undo_action == "shape":
+			get_tree().call_group("undo_shape", "undo")
+		else:
+			get_tree().call_group("undo_mp", "undo")
+		SoundManager.play_sound(SoundManager.SOUNDS.TILE_PLACE)
+		clear_layer(1)
+		var state = undo_state.pop_back()
+		for atlas_pos in state.keys():
+			for cell in state[atlas_pos]:
+				set_cell(1, cell, 0, atlas_pos)
+		active_shapes = active_shapes_stack.pop_back()
 func enter_placement_mode(shape):
 	self.shape = shape
 	placement_mode = true
 
 func exit_placement_mode(shape, shape_ui):
 	if !shapes_control.mouse_over and _can_place_shape_at_current_position():
+		undo_actions.push_back("shape")
+		_push_undo_stack()		
 		_place_shape()
 		shape_ui.expire()
 	else:
@@ -109,6 +140,8 @@ func _check_scale_shape(scale=1, multiplayer_ui = null):
 
 func _scale_shape(shape, scale):
 	var new_blocks = {}
+	undo_actions.append("scale")
+	_push_undo_stack()
 
 	# Project each block (including the root) by the scale in the direction of the block
 	for block_pos in shape.blocks.keys():
@@ -182,13 +215,14 @@ func _reset_cell(pos, layer=2):
 	set_cell(layer, pos, 0, Vector2i(3,3))
 
 func _reset():
+	for active_cell in get_used_cells(1):
+		var retry_particles = RETRY_PARTICLES.instantiate()
+		retry_particles.global_position = map_to_local(active_cell)
+		add_child(retry_particles)
+		retry_particles.emitting = true
 	clear_layer(1)
-	
-	for active_shape in active_shapes:
-		for block in active_shape.blocks.keys():
-			var retry_particles = RETRY_PARTICLES.instantiate()
-			retry_particles.global_position = map_to_local(active_shape.global_position + block)
-			add_child(retry_particles)
-			retry_particles.emitting = true
 	active_shapes = []
+	undo_state = []
+	undo_actions = []
+	active_shapes_stack = []
 	

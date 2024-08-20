@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ipt5c4e1h6wo"]
+[gd_scene load_steps=17 format=3 uid="uid://ipt5c4e1h6wo"]
 
 [ext_resource type="Script" path="res://scripts/level_manager.gd" id="1_wh1jp"]
 [ext_resource type="Script" path="res://scripts/Phase1Camera.gd" id="2_ufg03"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://rvp1j1c6hjh" path="res://particles/arrow_indicator.tscn" id="10_qj0g2"]
 [ext_resource type="LabelSettings" uid="uid://w4vi2ub2x5dk" path="res://fonts/available_multiplier.tres" id="11_4nwnp"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="12_bl8de"]
+[ext_resource type="PackedScene" uid="uid://4kog6fvo3jbx" path="res://scenes/hud.tscn" id="12_psd8l"]
 [ext_resource type="Script" path="res://scripts/level_complete.gd" id="13_x2y0k"]
 [ext_resource type="PackedScene" uid="uid://hb3225in5b7u" path="res://particles/confetti_particles.tscn" id="14_w3owr"]
 
@@ -109,48 +110,7 @@ scale = Vector2(0.15, 0.15)
 text = "Goal"
 label_settings = ExtResource("11_4nwnp")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Retry" type="Button" parent="CanvasLayer"]
-anchors_preset = -1
-anchor_left = 0.514
-anchor_top = 0.029
-anchor_right = 0.514
-anchor_bottom = 0.029
-offset_left = -49.128
-offset_top = -22.792
-offset_right = 341.872
-offset_bottom = 160.208
-grow_horizontal = 2
-scale = Vector2(0.25, 0.25)
-focus_mode = 0
-theme_override_fonts/font = ExtResource("8_0sxvr")
-theme_override_font_sizes/font_size = 128
-text = "RETRY"
-
-[node name="LevelTime" type="Label" parent="CanvasLayer"]
-visible = false
-self_modulate = Color(1, 1, 1, 0.396078)
-offset_left = 325.0
-offset_top = 64.0
-offset_right = 1785.0
-offset_bottom = 268.0
-scale = Vector2(0.15, 0.15)
-text = "<0.00>"
-label_settings = ExtResource("11_4nwnp")
-horizontal_alignment = 1
-
-[node name="TotalTime" type="Label" parent="CanvasLayer"]
-visible = false
-self_modulate = Color(1, 1, 1, 0.396078)
-offset_left = 641.0
-offset_top = 64.0
-offset_right = 2111.0
-offset_bottom = 268.0
-scale = Vector2(0.15, 0.15)
-text = "<0.00>"
-label_settings = ExtResource("11_4nwnp")
-horizontal_alignment = 1
+[node name="HUD" parent="." instance=ExtResource("12_psd8l")]
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 process_mode = 3

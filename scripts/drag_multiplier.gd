@@ -9,7 +9,8 @@ func _ready():
 	pass
 
 func expire():
-	get_parent().queue_free()
+	get_tree().call_deferred("call_group", "undo_mp", "push_back_mp", multiplier_value)
+	get_parent().call_deferred("queue_free")
 
 func _process(_delta):
 	if movement && Input.is_action_just_released("primary"):

@@ -6,13 +6,14 @@ enum GameState {
 }
 
 const RETRY_PARTICLES = preload("res://particles/retry_particles.tscn")
-@onready var level_time = $CanvasLayer/LevelTime
-@onready var total_time = $CanvasLayer/TotalTime
+@onready var level_time = $HUD/LevelTime
+@onready var total_time = $HUD/TotalTime
 @onready var start_button: Button = $UI/StartButton
-@onready var reset_button = $CanvasLayer/Retry
+@onready var reset_button = $HUD/Retry
 @onready var phase_1_camera: Camera2D = $Phase1Camera
 @onready var ui = $UI
 @onready var indicators = $Indicators
+@onready var undo_button = $HUD/Undo
 
 const PLAYER = preload("res://scenes/player.tscn")
 
@@ -34,6 +35,7 @@ func _process(delta):
 func _start_game():
 	game_state = GameState.PLAY
 	indicators.hide()
+	undo_button.hide()
 	ui.hide()
 	var player = PLAYER.instantiate()
 	add_child(player)
@@ -65,7 +67,8 @@ func _reset_game():
 	game_state = GameState.BUILD
 	indicators.show()
 	ui.show()
-			
+	undo_button.show()
+	
 	# Set camera
 	phase_1_camera.make_current()
 	

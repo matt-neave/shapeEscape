@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://da38vsu4g0xip"]
+[gd_scene load_steps=17 format=3 uid="uid://da38vsu4g0xip"]
 
 [ext_resource type="Script" path="res://scripts/level_manager.gd" id="1_nfqkq"]
 [ext_resource type="Script" path="res://scripts/Phase1Camera.gd" id="2_fa8k8"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://82onn6h7w0f1" path="res://scenes/goal.tscn" id="9_xphhv"]
 [ext_resource type="PackedScene" uid="uid://rvp1j1c6hjh" path="res://particles/arrow_indicator.tscn" id="10_gej85"]
 [ext_resource type="LabelSettings" uid="uid://w4vi2ub2x5dk" path="res://fonts/available_multiplier.tres" id="11_mklve"]
+[ext_resource type="PackedScene" uid="uid://4kog6fvo3jbx" path="res://scenes/hud.tscn" id="12_ekux6"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="12_rtseq"]
 [ext_resource type="Script" path="res://scripts/level_complete.gd" id="13_5pv7d"]
 [ext_resource type="PackedScene" uid="uid://hb3225in5b7u" path="res://particles/confetti_particles.tscn" id="14_mer1j"]
@@ -110,48 +111,7 @@ scale = Vector2(0.15, 0.15)
 text = "Goal"
 label_settings = ExtResource("11_mklve")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Retry" type="Button" parent="CanvasLayer"]
-anchors_preset = -1
-anchor_left = 0.514
-anchor_top = 0.029
-anchor_right = 0.514
-anchor_bottom = 0.029
-offset_left = -49.128
-offset_top = -22.792
-offset_right = 341.872
-offset_bottom = 160.208
-grow_horizontal = 2
-scale = Vector2(0.25, 0.25)
-focus_mode = 0
-theme_override_fonts/font = ExtResource("8_taf8d")
-theme_override_font_sizes/font_size = 128
-text = "RETRY"
-
-[node name="LevelTime" type="Label" parent="CanvasLayer"]
-visible = false
-self_modulate = Color(1, 1, 1, 0.396078)
-offset_left = 320.0
-offset_top = 8.0
-offset_right = 1780.0
-offset_bottom = 212.0
-scale = Vector2(0.15, 0.15)
-text = "<level time>"
-label_settings = ExtResource("11_mklve")
-horizontal_alignment = 1
-
-[node name="TotalTime" type="Label" parent="CanvasLayer"]
-visible = false
-self_modulate = Color(1, 1, 1, 0.396078)
-offset_left = 646.0
-offset_top = 8.0
-offset_right = 2106.0
-offset_bottom = 212.0
-scale = Vector2(0.15, 0.15)
-text = "<total time>"
-label_settings = ExtResource("11_mklve")
-horizontal_alignment = 1
+[node name="HUD" parent="." instance=ExtResource("12_ekux6")]
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 process_mode = 3

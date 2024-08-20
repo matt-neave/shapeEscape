@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://bl886r1v0s32x"]
+[gd_scene load_steps=17 format=3 uid="uid://bl886r1v0s32x"]
 
 [ext_resource type="Script" path="res://scripts/level_manager.gd" id="1_lkrwd"]
 [ext_resource type="Script" path="res://scripts/Phase1Camera.gd" id="2_n1fpj"]
 [ext_resource type="PackedScene" uid="uid://xfns54a7n5eb" path="res://particles/background_particles.tscn" id="3_3kdpo"]
 [ext_resource type="TileSet" uid="uid://brbpok4okhehv" path="res://map_resources/world_tile_set.tres" id="4_soj2y"]
 [ext_resource type="Script" path="res://scripts/tile_draw_controller.gd" id="5_dryfr"]
+[ext_resource type="PackedScene" uid="uid://4kog6fvo3jbx" path="res://scenes/hud.tscn" id="6_7mq22"]
 [ext_resource type="PackedScene" uid="uid://dfiwma3suklni" path="res://scenes/avaliable_shapes.tscn" id="6_ck8r7"]
 [ext_resource type="PackedScene" uid="uid://bjyivq413uhna" path="res://scenes/avaliable_multipliers.tscn" id="7_boqqx"]
 [ext_resource type="FontFile" uid="uid://bfjao6y3cc3i" path="res://assets/fonts/MotleyForcesRegular-w1rZ3.ttf" id="8_dhlvm"]
@@ -109,48 +110,7 @@ scale = Vector2(0.15, 0.15)
 text = "Goal"
 label_settings = ExtResource("11_8o3lc")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Retry" type="Button" parent="CanvasLayer"]
-anchors_preset = -1
-anchor_left = 0.514
-anchor_top = 0.029
-anchor_right = 0.514
-anchor_bottom = 0.029
-offset_left = -49.128
-offset_top = -22.792
-offset_right = 341.872
-offset_bottom = 160.208
-grow_horizontal = 2
-scale = Vector2(0.25, 0.25)
-focus_mode = 0
-theme_override_fonts/font = ExtResource("8_dhlvm")
-theme_override_font_sizes/font_size = 128
-text = "RETRY"
-
-[node name="LevelTime" type="Label" parent="CanvasLayer"]
-visible = false
-self_modulate = Color(1, 1, 1, 0.396078)
-offset_left = 320.0
-offset_top = 8.0
-offset_right = 1780.0
-offset_bottom = 212.0
-scale = Vector2(0.15, 0.15)
-text = "<level time>"
-label_settings = ExtResource("11_8o3lc")
-horizontal_alignment = 1
-
-[node name="TotalTime" type="Label" parent="CanvasLayer"]
-visible = false
-self_modulate = Color(1, 1, 1, 0.396078)
-offset_left = 646.0
-offset_top = 8.0
-offset_right = 2106.0
-offset_bottom = 212.0
-scale = Vector2(0.15, 0.15)
-text = "<total time>"
-label_settings = ExtResource("11_8o3lc")
-horizontal_alignment = 1
+[node name="HUD" parent="." instance=ExtResource("6_7mq22")]
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 process_mode = 3

@@ -7,7 +7,8 @@ func _ready():
 	pass
 
 func expire():
-	get_parent().queue_free()
+	get_tree().call_deferred("call_group", "undo_shape", "push_back_shape", get_parent().shape)
+	get_parent().call_deferred("queue_free")
 
 func _process(_delta):
 	if !get_parent().visible && Input.is_action_just_released("primary"):

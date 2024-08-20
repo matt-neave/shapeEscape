@@ -4,11 +4,24 @@ extends Control
 var shapes = []
 var mouse_over: bool = false
 const AVAILABLE_SHAPE = preload("res://scenes/available_shape.tscn")
+var undo_shapes = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	fetch_ui_data()
 	add_to_group("ui_control")
+	add_to_group("undo_shape")
+	
+	
+func push_back_shape(shape):
+	undo_shapes.append(shape.duplicate())
+	
+func undo():
+	if undo_shapes.size() > 0:
+		var shape = undo_shapes.pop_back()
+		var new_shape = AVAILABLE_SHAPE.instantiate()
+		new_shape.shape = shape
+		shape_container.add_child(new_shape)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

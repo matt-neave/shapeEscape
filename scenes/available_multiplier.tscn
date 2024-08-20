@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3e5ec4tic44f"]
+[gd_scene load_steps=7 format=3 uid="uid://d3e5ec4tic44f"]
 
 [ext_resource type="Script" path="res://scripts/available_shape.gd" id="1_weeca"]
 [ext_resource type="Script" path="res://scripts/drag_multiplier.gd" id="2_7cn3y"]
@@ -7,6 +7,8 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iah11"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nf5pf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ueyk6"]
 
 [node name="AvailableMultiplier" type="Control"]
 custom_minimum_size = Vector2(100, 0)
@@ -43,6 +45,7 @@ offset_right = 84.0
 offset_bottom = 80.0
 focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_nf5pf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ueyk6")
 script = ExtResource("2_7cn3y")
 
 [connection signal="button_down" from="Button" to="Button" method="_on_button_down"]

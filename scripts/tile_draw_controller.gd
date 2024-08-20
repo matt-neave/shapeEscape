@@ -12,6 +12,7 @@ var active_shapes = []
 var undo_state = []
 var undo_actions = []
 var active_shapes_stack = []
+var undo_blocks = []
 
 var placement_mode = false
 var prev_pos
@@ -61,6 +62,9 @@ func undo():
 			get_tree().call_group("undo_shape", "undo")
 		else:
 			get_tree().call_group("undo_mp", "undo")
+			var scale_shape = undo_blocks.pop_back()
+			scale_shape["shape"].blocks = scale_shape["blocks"]
+			
 		SoundManager.play_sound(SoundManager.SOUNDS.TILE_PLACE)
 		clear_layer(1)
 		var state = undo_state.pop_back()
@@ -110,6 +114,7 @@ func _get_used_rect(layer = 0):
 	return rect
 
 func multiplier_dropped(scale, multiplier_ui):
+	print(str(scale))
 	_check_scale_shape(scale, multiplier_ui)
 
 func _place_shape_at_root(cell_pos):
@@ -139,15 +144,28 @@ func _check_scale_shape(scale=1, multiplayer_ui = null):
 				multiplayer_ui.expire()
 			_scale_shape(shape_to_scale, scale)
 
-func _scale_shape(shape, scale):
+func _scale_shape(scale_shape, scale):
+	print("scaling scale_shape")
 	var new_blocks = {}
 	undo_actions.append("scale")
+	
+	var undo_block = {
+		"shape": scale_shape,
+		"blocks": {}
+	}
+	
+	for cell in scale_shape.blocks.keys():
+		var new_cell = BuildingBlock.new()
+		new_cell.direction = scale_shape.blocks[cell].direction
+		undo_block["blocks"][cell] = new_cell
+	undo_blocks.append(undo_block)
+	
 	_push_undo_stack()
-
+	print(scale_shape.blocks.keys())
 	# Project each block (including the root) by the scale in the direction of the block
-	for block_pos in shape.blocks.keys():
-		var block = shape.blocks[block_pos]
-		var global_pos = shape.global_position + block_pos
+	for block_pos in scale_shape.blocks.keys():
+		var block = scale_shape.blocks[block_pos]
+		var global_pos = scale_shape.global_position + block_pos
 		
 		match block.direction:
 			BuildingBlock.Direction.NONE:
@@ -172,8 +190,7 @@ func _scale_shape(shape, scale):
 				for i in range(scale):
 					new_blocks[block_pos + Vector2i(i, 0)] = block
 					_place_block(global_pos + Vector2i(i, 0), block)
-
-	shape.blocks = new_blocks
+	scale_shape.blocks = new_blocks
 	SoundManager.play_sound(SoundManager.SOUNDS.TILE_PLACE)
 
 func _place_block(global_pos, block, layer=1):

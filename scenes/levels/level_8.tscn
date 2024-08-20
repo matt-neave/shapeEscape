@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bqjabdjfjwwti"]
+[gd_scene load_steps=17 format=3 uid="uid://cbj77nfioclsj"]
 
 [ext_resource type="Script" path="res://scripts/level_manager.gd" id="1_tiw5d"]
 [ext_resource type="Script" path="res://scripts/Phase1Camera.gd" id="2_5us2p"]
@@ -8,10 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://dfiwma3suklni" path="res://scenes/avaliable_shapes.tscn" id="6_v6j3v"]
 [ext_resource type="PackedScene" uid="uid://bjyivq413uhna" path="res://scenes/avaliable_multipliers.tscn" id="7_uiwb1"]
 [ext_resource type="FontFile" uid="uid://bfjao6y3cc3i" path="res://assets/fonts/MotleyForcesRegular-w1rZ3.ttf" id="8_baq5m"]
-[ext_resource type="PackedScene" uid="uid://82onn6h7w0f1" path="res://scenes/goal.tscn" id="9_4h584"]
+[ext_resource type="PackedScene" path="res://scenes/goal.tscn" id="9_4h584"]
 [ext_resource type="PackedScene" uid="uid://rvp1j1c6hjh" path="res://particles/arrow_indicator.tscn" id="10_kpwjo"]
 [ext_resource type="LabelSettings" uid="uid://w4vi2ub2x5dk" path="res://fonts/available_multiplier.tres" id="11_il3re"]
-[ext_resource type="PackedScene" uid="uid://4kog6fvo3jbx" path="res://scenes/hud.tscn" id="12_3l2so"]
+[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="12_3l2so"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="12_trtd2"]
 [ext_resource type="Script" path="res://scripts/level_complete.gd" id="13_iyneb"]
 [ext_resource type="PackedScene" uid="uid://hb3225in5b7u" path="res://particles/confetti_particles.tscn" id="14_bmpsq"]
@@ -37,10 +37,8 @@ format = 2
 layer_0/name = "base_map"
 layer_0/tile_data = PackedInt32Array(65523, 0, 2, 5, 0, 2, 6, 0, 2, 7, 0, 2, 8, 0, 2, 9, 0, 2, 10, 0, 2, 11, 0, 2, 12, 0, 2, 65524, 0, 2, 65525, 0, 2, 65526, 0, 2, 65527, 0, 2, 65528, 0, 2, 65529, 0, 2, 65530, 0, 2, 65531, 0, 2, 65532, 0, 2, 65533, 0, 2, 65534, 0, 2, 65535, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0, 2, 65522, 0, 2, 65521, 0, 2, 13, 0, 2, 14, 0, 2, -851983, 0, 2, -851982, 0, 2, -851981, 0, 2, -851980, 0, 2, -851979, 0, 2, -851978, 0, 2, -851977, 0, 2, -851976, 0, 2, -851975, 0, 2, -851974, 0, 2, -851973, 0, 2, -851972, 0, 2, -851971, 0, 2, -851970, 0, 2, -851969, 0, 2, -917504, 0, 2, -917503, 0, 2, -917502, 0, 2, -917501, 0, 2, -917500, 0, 2, -917499, 0, 2, -917498, 0, 2, -917497, 0, 2, -917496, 0, 2, -917495, 0, 2, -917494, 0, 2, -917493, 0, 2, -917492, 0, 2, -917491, 0, 2, -917490, 0, 2, -851954, 0, 2, -786418, 0, 2, -720882, 0, 2, -655346, 0, 2, -589810, 0, 2, -524274, 0, 2, -458738, 0, 2, -393202, 0, 2, -327666, 0, 2, -262130, 0, 2, -196594, 0, 2, -131058, 0, 2, -65522, 0, 2, -15, 0, 2, -65551, 0, 2, -131087, 0, 2, -196623, 0, 2, -262159, 0, 2, -327695, 0, 2, -393231, 0, 2, -458767, 0, 2, -524303, 0, 2, -589839, 0, 2, -655375, 0, 2, -720911, 0, 2, -786447, 0, 2, -655349, 0, 2, -589813, 0, 2, -655347, 0, 2, -589811, 0, 2, -524275, 0, 2, -458739, 0, 2, -393203, 0, 2, -327667, 0, 2, -262131, 0, 2, -196595, 0, 2, -131059, 0, 2, -65523, 0, 2, -196597, 0, 2, -262133, 0, 2, -327669, 0, 2, -393205, 0, 2, -458741, 0, 2, -524277, 0, 2, -655348, 0, 2, -589812, 0, 2, -524276, 0, 2, -458740, 0, 2, -393204, 0, 2, -327668, 0, 2, -262132, 0, 2, -196596, 0, 2, -131061, 0, 2, -131060, 0, 2, -65524, 0, 2, -65525, 0, 2, -7, 0, 2, -65543, 0, 2, -131079, 0, 2, -196615, 0, 2, -262151, 0, 2, -327687, 0, 2, -393223, 0, 2, -458759, 0, 2, -458760, 0, 2, -458761, 0, 2, -458762, 0, 2, -458763, 0, 2, -524299, 0, 2, -589834, 0, 2, -655369, 0, 2, -655368, 0, 2, -655367, 0, 2, -786436, 0, 2, -720900, 0, 2, -655364, 0, 2, -589828, 0, 2, -393220, 0, 2, -393219, 0, 2, -327684, 0, 2, -262148, 0, 2, -196612, 0, 2, -131076, 0, 2, -65540, 0, 2, -4, 0, 2, -524292, 0, 2, -524293, 0, 2, -524291, 0, 2, -524290, 0, 2, -524289, 0, 2, -589824, 0, 2, -524288, 0, 2, -458752, 0, 2, -393216, 0, 2, -327680, 0, 2, -262144, 0, 2, -196608, 0, 2, -327683, 0, 2, -262147, 0, 2, -196611, 0, 2, -131075, 0, 2, -65539, 0, 2, -3, 0, 2, -196603, 0, 2, -196602, 0, 2, -393214, 0, 2, -393207, 0, 2, -393208, 0, 2, -589819, 0, 2, -589818, 0, 2, -262158, 0, 2, -262157, 0, 2, -262156, 0, 2, -262155, 0, 2, -589835, 0, 2, -393215, 0, 2, -589820, 0, 2, -524285, 0, 2)
 layer_1/name = "placed_tiles"
-layer_1/tile_data = PackedInt32Array()
 layer_2/name = "placement_tiles"
 layer_2/modulate = Color(1, 1, 1, 0.466667)
-layer_2/tile_data = PackedInt32Array()
 script = ExtResource("5_ufy2u")
 shapes_control = NodePath("../UI/AvaliableShapes")
 

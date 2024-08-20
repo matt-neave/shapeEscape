@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://82onn6h7w0f1"]
+
+[ext_resource type="Script" path="res://scripts/goal.gd" id="1_ksnqc"]
+[ext_resource type="Texture2D" uid="uid://dwhobjr1m8kcf" path="res://assets/tiles/basic_block.png" id="2_6m3p6"]
+
+[sub_resource type="Animation" id="Animation_tl87p"]
+resource_name = "idle"
+length = 2.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6, 2, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.849672, 0.668041, 0.948403, 1), Color(0.617525, 0.760565, 0.956927, 1), Color(0.348391, 0.834272, 0.828121, 1), Color(0.598967, 0.787785, 0.647613, 1), Color(0.899982, 0.681533, 0.531581, 1), Color(0.93435, 0.674955, 0.649306, 1), Color(0.849672, 0.668041, 0.948403, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0xnsy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.849672, 0.668041, 0.948403, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5y5ce"]
+_data = {
+"RESET": SubResource("Animation_0xnsy"),
+"idle": SubResource("Animation_tl87p")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ut35c"]
+
+[node name="Goal" type="Area2D"]
+position = Vector2(674, -202)
+script = ExtResource("1_ksnqc")
+
+[node name="BasicBlock" type="Sprite2D" parent="."]
+self_modulate = Color(0.849672, 0.668041, 0.948403, 1)
+position = Vector2(-2, 42)
+texture = ExtResource("2_6m3p6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BasicBlock"]
+libraries = {
+"": SubResource("AnimationLibrary_5y5ce")
+}
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.625, -0.125)
+shape = SubResource("RectangleShape2D_ut35c")
+
+[connection signal="body_entered" from="." to="." method="_on_LevelCompleteTrigger_body_entered"]

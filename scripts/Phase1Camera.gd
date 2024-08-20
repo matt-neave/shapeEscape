@@ -9,7 +9,6 @@ func _ready():
 	# Scale by the tile size.
 	rect.size *= tilemap.tile_set.tile_size
 	rect.position *= tilemap.tile_set.tile_size
-	print(rect)
 	limit_left = rect.position.x
 	limit_right = rect.position.x + rect.size.x
 	limit_top = rect.position.y

@@ -6,7 +6,8 @@ enum GameState {
 }
 
 const RETRY_PARTICLES = preload("res://particles/retry_particles.tscn")
-
+@onready var level_time = $CanvasLayer/LevelTime
+@onready var total_time = $CanvasLayer/TotalTime
 @onready var start_button: Button = $UI/StartButton
 @onready var reset_button = $CanvasLayer/Retry
 @onready var phase_1_camera: Camera2D = $Phase1Camera
@@ -25,7 +26,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if level_time:
+		level_time.text = str(GameManager.level_time).pad_decimals(2)
+	if total_time:
+		total_time.text = str(GameManager.total_time).pad_decimals(2)
 
 func _start_game():
 	game_state = GameState.PLAY

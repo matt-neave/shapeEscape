@@ -13,7 +13,7 @@ const AUDIO_TRACKS = {
 	SOUNDS.BUILD_MUSIC: preload("res://sfx/Equatorial Complex.mp3"),
 	SOUNDS.BUTTON_CLICK: preload("res://sfx/button_click.wav"),
 	SOUNDS.FOOT_STEP: preload("res://sfx/foot_step.wav"),
-	SOUNDS.LEVEL_COMPLETE: preload("res://sfx/level_complete.mp3"),
+	SOUNDS.LEVEL_COMPLETE: preload("res://sfx/level_complete.wav"),
 }
 
 var music_player = AudioStreamPlayer2D.new()

@@ -54,8 +54,6 @@ func _adjust_camera_limits():
 	camera_2d.limit_right = rect.position.x + rect.size.x
 	camera_2d.limit_top = rect.position.y
 	camera_2d.limit_bottom = rect.position.y + rect.size.y
-	print(rect)
-	print(camera_2d.limit_bottom)
 
 func _sprite_direction():
 	if velocity.x < 0:

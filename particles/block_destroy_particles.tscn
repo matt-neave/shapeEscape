@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvdtqb06vpq64"]
+
+[ext_resource type="Texture2D" uid="uid://dwhobjr1m8kcf" path="res://assets/tiles/basic_block.png" id="1_3eg21"]
+
+[sub_resource type="Gradient" id="Gradient_awbfc"]
+colors = PackedColorArray(1, 1, 1, 0.447059, 1, 1, 1, 0)
+
+[node name="RetryParticles" type="CPUParticles2D"]
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("1_3eg21")
+emission_shape = 1
+emission_sphere_radius = 40.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+angular_velocity_min = 10.0
+angular_velocity_max = 10.0
+scale_amount_min = 0.05
+scale_amount_max = 0.15
+color_ramp = SubResource("Gradient_awbfc")

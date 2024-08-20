@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dbb8oo3urfisa"]
+[gd_scene load_steps=16 format=3 uid="uid://dbb8oo3urfisa"]
 
 [ext_resource type="Script" path="res://scripts/level_manager.gd" id="1_3yv38"]
 [ext_resource type="Script" path="res://scripts/Phase1Camera.gd" id="2_n0kfb"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dfiwma3suklni" path="res://scenes/avaliable_shapes.tscn" id="6_30uy8"]
 [ext_resource type="PackedScene" uid="uid://bjyivq413uhna" path="res://scenes/avaliable_multipliers.tscn" id="7_u5j5m"]
 [ext_resource type="FontFile" uid="uid://bfjao6y3cc3i" path="res://assets/fonts/MotleyForcesRegular-w1rZ3.ttf" id="8_uhga6"]
-[ext_resource type="Script" path="res://scripts/goal.gd" id="9_xfsxg"]
+[ext_resource type="PackedScene" uid="uid://82onn6h7w0f1" path="res://scenes/goal.tscn" id="9_nhbs5"]
 [ext_resource type="PackedScene" uid="uid://rvp1j1c6hjh" path="res://particles/arrow_indicator.tscn" id="10_44iyv"]
 [ext_resource type="LabelSettings" uid="uid://w4vi2ub2x5dk" path="res://fonts/available_multiplier.tres" id="11_78byp"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="12_cpcxu"]
@@ -17,8 +17,6 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rk7v1"]
 bg_color = Color(0.158472, 0.158472, 0.158472, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ut35c"]
 
 [node name="Level3" type="Node2D"]
 script = ExtResource("1_3yv38")
@@ -80,13 +78,7 @@ theme_override_font_sizes/font_size = 128
 text = "Go
 "
 
-[node name="Goal" type="Area2D" parent="."]
-position = Vector2(667, -212)
-script = ExtResource("9_xfsxg")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
-position = Vector2(-1.625, -0.125)
-shape = SubResource("RectangleShape2D_ut35c")
+[node name="Goal" parent="." instance=ExtResource("9_nhbs5")]
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(-681, -344)
@@ -135,6 +127,30 @@ focus_mode = 0
 theme_override_fonts/font = ExtResource("8_uhga6")
 theme_override_font_sizes/font_size = 128
 text = "RETRY"
+
+[node name="LevelTime" type="Label" parent="CanvasLayer"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.396078)
+offset_left = 320.0
+offset_top = 8.0
+offset_right = 1780.0
+offset_bottom = 212.0
+scale = Vector2(0.15, 0.15)
+text = "<level time>"
+label_settings = ExtResource("11_78byp")
+horizontal_alignment = 1
+
+[node name="TotalTime" type="Label" parent="CanvasLayer"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.396078)
+offset_left = 646.0
+offset_top = 8.0
+offset_right = 2106.0
+offset_bottom = 212.0
+scale = Vector2(0.15, 0.15)
+text = "<total time>"
+label_settings = ExtResource("11_78byp")
+horizontal_alignment = 1
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -252,5 +268,3 @@ text = "You're on your own from here..."
 label_settings = ExtResource("11_78byp")
 horizontal_alignment = 1
 autowrap_mode = 2
-
-[connection signal="body_entered" from="Goal" to="Goal" method="_on_LevelCompleteTrigger_body_entered"]

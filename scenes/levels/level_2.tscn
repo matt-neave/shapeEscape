@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dctp0yb1s6c1i"]
+[gd_scene load_steps=16 format=3 uid="uid://dctp0yb1s6c1i"]
 
 [ext_resource type="Script" path="res://scripts/level_manager.gd" id="1_01mqv"]
 [ext_resource type="Script" path="res://scripts/Phase1Camera.gd" id="2_vjy7g"]
@@ -8,17 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://dfiwma3suklni" path="res://scenes/avaliable_shapes.tscn" id="6_2nmkq"]
 [ext_resource type="PackedScene" uid="uid://bjyivq413uhna" path="res://scenes/avaliable_multipliers.tscn" id="7_of78f"]
 [ext_resource type="FontFile" uid="uid://bfjao6y3cc3i" path="res://assets/fonts/MotleyForcesRegular-w1rZ3.ttf" id="8_r8yvu"]
-[ext_resource type="Script" path="res://scripts/goal.gd" id="9_c70m5"]
 [ext_resource type="PackedScene" uid="uid://rvp1j1c6hjh" path="res://particles/arrow_indicator.tscn" id="10_vrd4x"]
 [ext_resource type="LabelSettings" uid="uid://w4vi2ub2x5dk" path="res://fonts/available_multiplier.tres" id="11_i50jx"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="12_x182h"]
 [ext_resource type="Script" path="res://scripts/level_complete.gd" id="13_m14al"]
+[ext_resource type="PackedScene" uid="uid://82onn6h7w0f1" path="res://scenes/goal.tscn" id="14_2f4i4"]
 [ext_resource type="PackedScene" uid="uid://hb3225in5b7u" path="res://particles/confetti_particles.tscn" id="14_114qs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rk7v1"]
 bg_color = Color(0.158472, 0.158472, 0.158472, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ut35c"]
 
 [node name="Level2" type="Node2D"]
 script = ExtResource("1_01mqv")
@@ -36,7 +34,7 @@ script = ExtResource("2_vjy7g")
 tile_set = ExtResource("4_shsmi")
 format = 2
 layer_0/name = "base_map"
-layer_0/tile_data = PackedInt32Array(65533, 0, 2, 65534, 0, 2, 65535, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 65532, 0, 2, 65531, 0, 2, 65530, 0, 2, 65529, 0, 2, 65528, 0, 2, 65527, 0, 2, 65526, 0, 2, 65525, 0, 2, 65524, 0, 2, 65523, 0, 2, 3, 0, 2, 4, 0, 2, 5, 0, 2, 6, 0, 2, 7, 0, 2, 8, 0, 2, 9, 0, 2, 10, 0, 2, 11, 0, 2, 12, 0, 2, -65524, 0, 2, -131060, 0, 2, -196596, 0, 2, -262132, 0, 2, -327668, 0, 2, -393204, 0, 2, -458740, 0, 2, -524276, 0, 2, -589812, 0, 2, -655348, 0, 2, -720884, 0, 2, -786420, 0, 2, -720909, 0, 2, -655373, 0, 2, -589837, 0, 2, -524301, 0, 2, -458765, 0, 2, -393229, 0, 2, -327693, 0, 2, -262157, 0, 2, -196621, 0, 2, -131085, 0, 2, -65549, 0, 2, -13, 0, 2, -720908, 0, 2, -720907, 0, 2, -720906, 0, 2, -720905, 0, 2, -720904, 0, 2, -720903, 0, 2, -720902, 0, 2, -720901, 0, 2, -720900, 0, 2, -720899, 0, 2, -720898, 0, 2, -720897, 0, 2, -786432, 0, 2, -786431, 0, 2, -786430, 0, 2, -786429, 0, 2, -786428, 0, 2, -786427, 0, 2, -786426, 0, 2, -786425, 0, 2, -786424, 0, 2, -786423, 0, 2, -786422, 0, 2, -786421, 0, 2, -12, 0, 2, -65548, 0, 2, -131084, 0, 2, -131083, 0, 2, -65547, 0, 2, -11, 0, 2, -131082, 0, 2, -65546, 0, 2, -10, 0, 2, -131081, 0, 2, -65545, 0, 2, -9, 0, 2, -131080, 0, 2, -65544, 0, 2, -8, 0, 2, -131079, 0, 2, -65543, 0, 2, -7, 0, 2, -131078, 0, 2, -65542, 0, 2, -6, 0, 2, -196603, 0, 2, -131067, 0, 2, -65531, 0, 2, -196602, 0, 2, -131066, 0, 2, -65530, 0, 2, -196601, 0, 2, -131065, 0, 2, -65529, 0, 2, -196600, 0, 2, -131064, 0, 2, -65528, 0, 2, -196599, 0, 2, -131063, 0, 2, -65527, 0, 2, -196598, 0, 2, -131062, 0, 2, -65526, 0, 2, -196597, 0, 2, -131061, 0, 2, -65525, 0, 2)
+layer_0/tile_data = PackedInt32Array(65533, 0, 2, 65534, 0, 2, 65535, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 65532, 0, 2, 65531, 0, 2, 65530, 0, 2, 65529, 0, 2, 65528, 0, 2, 65527, 0, 2, 65526, 0, 2, 65525, 0, 2, 65524, 0, 2, 65523, 0, 2, 3, 0, 2, 4, 0, 2, 5, 0, 2, 6, 0, 2, 7, 0, 2, 8, 0, 2, 9, 0, 2, 10, 0, 2, 11, 0, 2, 12, 0, 2, -65524, 0, 2, -131060, 0, 2, -196596, 0, 2, -262132, 0, 2, -327668, 0, 2, -393204, 0, 2, -458740, 0, 2, -524276, 0, 2, -589812, 0, 2, -655348, 0, 2, -720884, 0, 2, -786420, 0, 2, -720909, 0, 2, -655373, 0, 2, -589837, 0, 2, -524301, 0, 2, -458765, 0, 2, -393229, 0, 2, -327693, 0, 2, -262157, 0, 2, -196621, 0, 2, -131085, 0, 2, -65549, 0, 2, -13, 0, 2, -720908, 0, 2, -720907, 0, 2, -720906, 0, 2, -720905, 0, 2, -720904, 0, 2, -720903, 0, 2, -720902, 0, 2, -720901, 0, 2, -720900, 0, 2, -720899, 0, 2, -720898, 0, 2, -720897, 0, 2, -786432, 0, 2, -786431, 0, 2, -786430, 0, 2, -786429, 0, 2, -786428, 0, 2, -786427, 0, 2, -786426, 0, 2, -786425, 0, 2, -786424, 0, 2, -786423, 0, 2, -786422, 0, 2, -786421, 0, 2, -12, 0, 2, -65548, 0, 2, -131084, 0, 2, -131083, 0, 2, -65547, 0, 2, -11, 0, 2, -131082, 0, 2, -65546, 0, 2, -10, 0, 2, -131081, 0, 2, -65545, 0, 2, -9, 0, 2, -131080, 0, 2, -65544, 0, 2, -8, 0, 2, -131079, 0, 2, -65543, 0, 2, -7, 0, 2, -131078, 0, 2, -65542, 0, 2, -6, 0, 2, -196603, 0, 2, -131067, 0, 2, -65531, 0, 2, -196602, 0, 2, -131066, 0, 2, -65530, 0, 2, -196601, 0, 2, -131065, 0, 2, -65529, 0, 2, -196600, 0, 2, -131064, 0, 2, -65528, 0, 2, -196599, 0, 2, -131063, 0, 2, -65527, 0, 2, -196598, 0, 2, -131062, 0, 2, -65526, 0, 2, -196597, 0, 2, -131061, 0, 2, -65525, 0, 2, -262156, 0, 2, -262155, 0, 2, -262154, 0, 2, -262153, 0, 2, -262152, 0, 2, -262151, 0, 2, -262150, 0, 2, -196614, 0, 2, -196615, 0, 2, -196616, 0, 2, -196620, 0, 2, -196619, 0, 2, -196618, 0, 2, -196617, 0, 2, -327675, 0, 2, -327674, 0, 2, -327673, 0, 2, -327672, 0, 2, -327671, 0, 2, -327670, 0, 2, -327669, 0, 2, -262133, 0, 2, -262134, 0, 2, -262135, 0, 2, -262136, 0, 2, -262137, 0, 2, -262138, 0, 2, -262139, 0, 2)
 layer_1/name = "placed_tiles"
 layer_1/tile_data = PackedInt32Array()
 layer_2/name = "placement_tiles"
@@ -80,21 +78,16 @@ theme_override_font_sizes/font_size = 128
 text = "Go
 "
 
-[node name="Goal" type="Area2D" parent="."]
-position = Vector2(667, -212)
-script = ExtResource("9_c70m5")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
-position = Vector2(-1.625, -0.125)
-shape = SubResource("RectangleShape2D_ut35c")
-
 [node name="SpawnPoint" type="Marker2D" parent="."]
-position = Vector2(-681, -344)
+position = Vector2(-691, -399)
+
+[node name="Goal" parent="." instance=ExtResource("14_2f4i4")]
+position = Vector2(674, -330)
 
 [node name="Indicators" type="Node2D" parent="."]
 
 [node name="SpawnIndicator" parent="Indicators" instance=ExtResource("10_vrd4x")]
-position = Vector2(-688, -314)
+position = Vector2(-688, -428)
 
 [node name="SpawnLabel" type="Label" parent="Indicators/SpawnIndicator"]
 offset_left = -43.0
@@ -106,7 +99,7 @@ text = "Start"
 label_settings = ExtResource("11_i50jx")
 
 [node name="GoalIndicator" parent="Indicators" instance=ExtResource("10_vrd4x")]
-position = Vector2(671, -327)
+position = Vector2(671, -450)
 
 [node name="GoalLabel" type="Label" parent="Indicators/GoalIndicator"]
 offset_left = -42.0
@@ -135,6 +128,30 @@ focus_mode = 0
 theme_override_fonts/font = ExtResource("8_r8yvu")
 theme_override_font_sizes/font_size = 128
 text = "RETRY"
+
+[node name="LevelTime" type="Label" parent="CanvasLayer"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.396078)
+offset_left = 320.0
+offset_top = 8.0
+offset_right = 1780.0
+offset_bottom = 212.0
+scale = Vector2(0.15, 0.15)
+text = "<level time>"
+label_settings = ExtResource("11_i50jx")
+horizontal_alignment = 1
+
+[node name="TotalTime" type="Label" parent="CanvasLayer"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.396078)
+offset_left = 646.0
+offset_top = 8.0
+offset_right = 2106.0
+offset_bottom = 212.0
+scale = Vector2(0.15, 0.15)
+text = "<total time>"
+label_settings = ExtResource("11_i50jx")
+horizontal_alignment = 1
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -244,13 +261,11 @@ text = "NEXT LEVEL"
 [node name="TextTutorial" type="Label" parent="."]
 self_modulate = Color(1, 1, 1, 0.396078)
 offset_left = -410.0
-offset_top = -437.0
+offset_top = -518.0
 offset_right = 2882.0
-offset_bottom = 1009.0
+offset_bottom = 928.0
 scale = Vector2(0.25, 0.25)
 text = "Some shapes might need to be scaled..."
 label_settings = ExtResource("11_i50jx")
 horizontal_alignment = 1
 autowrap_mode = 2
-
-[connection signal="body_entered" from="Goal" to="Goal" method="_on_LevelCompleteTrigger_body_entered"]

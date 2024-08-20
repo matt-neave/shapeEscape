@@ -4,7 +4,7 @@ extends TileMap
 @onready var tile_particles = $"../TileParticles"
 
 const PLACEMENT_PARTICLES = preload("res://particles/placement_particles.tscn")
-const RETRY_PARTICLES = preload("res://particles/retry_particles.tscn")
+const RETRY_PARTICLES = preload("res://particles/block_destroy_particles.tscn")
 var shape
 var active_shapes = []
 
@@ -163,9 +163,10 @@ func _reset():
 	clear_layer(1)
 	
 	for active_shape in active_shapes:
-		var retry_particles = RETRY_PARTICLES.instantiate()
-		retry_particles.global_position = map_to_local(active_shape.global_position)
-		add_child(retry_particles)
-		retry_particles.emitting = true
+		for block in active_shape.blocks.keys():
+			var retry_particles = RETRY_PARTICLES.instantiate()
+			retry_particles.global_position = map_to_local(active_shape.global_position + block)
+			add_child(retry_particles)
+			retry_particles.emitting = true
 	active_shapes = []
 	

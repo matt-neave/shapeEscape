@@ -91,7 +91,16 @@ var level_data = [
 			[["right", 0, 0], ["up", 1, 2]],
 		],
 		"multipliers" = [2, 3, 3, 3],
-		"unlocked" = true,
+		"unlocked" = false,
+	},
+	{ # level 10
+		"shapes" = [
+			[["right", 0, 0], ["up", -1, 0], ["up", 3, 0]],
+			[["none", 0, 0], ["none", 0, -1], ["none", 0, 1]],
+			[["up", 0, 0], ["up", -1, 1], ["up", 1, -1]],
+		],
+		"multipliers" = [3, 3],
+		"unlocked" = false,
 	},
 	#{ Level X
 		#"shapes" = [

@@ -61,6 +61,16 @@ var level_data = [
 		"multipliers" = [2, 3],
 		"unlocked" = true,
 	},
+	{ # level 7
+		"shapes" = [
+			[["none", 0, 0], ["up", 6, 0]],
+			[["up", 0, 0]], 
+			[["right", 0, 0], ["left", 9, 0]],
+
+		],
+		"multipliers" = [3, 4, 5],
+		"unlocked" = true,
+	},
 	{
 		"shapes" = [
 			[["left", 0, 0]],

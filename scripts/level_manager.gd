@@ -35,7 +35,7 @@ func _process(delta):
 func _start_game():
 	game_state = GameState.PLAY
 	indicators.hide()
-	undo_button.hide()
+	undo_button.disabled = true
 	ui.hide()
 	var player = PLAYER.instantiate()
 	add_child(player)
@@ -67,7 +67,7 @@ func _reset_game():
 	game_state = GameState.BUILD
 	indicators.show()
 	ui.show()
-	undo_button.show()
+	undo_button.disabled = false
 	
 	# Set camera
 	phase_1_camera.make_current()

@@ -38,6 +38,11 @@ func _start_game():
 	var player = PLAYER.instantiate()
 	add_child(player)
 	
+	if name == "Level1":
+		$TextTutorial.hide()
+		$TextTutorial2.hide()
+		$TextTutorial3.show()
+	
 func _toggle_game_state():
 	SoundManager.play_sound(SoundManager.SOUNDS.BUTTON_CLICK)
 	_start_game()
@@ -67,3 +72,8 @@ func _reset_game():
 	# Reset the tile control
 	get_tree().call_group("tile_control", "_reset")
 	get_tree().call_group("ui_control", "fetch_ui_data")
+	
+	if name == "Level1":
+		$TextTutorial.show()
+		$TextTutorial2.show()
+		$TextTutorial3.hide()

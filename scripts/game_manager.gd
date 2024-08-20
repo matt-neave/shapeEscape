@@ -40,7 +40,7 @@ var level_data = [
 			[["right", 0, 0]],
 		],
 		"multipliers" = [2, 2],
-		"unlocked" = false
+		"unlocked" = true
 	},
 	{ # level 5
 		"shapes" = [
@@ -49,7 +49,7 @@ var level_data = [
 			[["right", 0, 0], ["left", 3, 1]],
 		],
 		"multipliers" = [3],
-		"unlocked" = false,
+		"unlocked" = true,
 	},
 	{ # level 6
 		"shapes" = [
@@ -59,7 +59,7 @@ var level_data = [
 			[["none", 0, 0], ["none", 0, 1]],
 		],
 		"multipliers" = [2, 3],
-		"unlocked" = false,
+		"unlocked" = true,
 	},
 	{ # level 7
 		"shapes" = [
@@ -69,7 +69,7 @@ var level_data = [
 
 		],
 		"multipliers" = [3, 4, 5],
-		"unlocked" = false,
+		"unlocked" = true,
 	},
 	{ # level 8
 		"shapes" = [
@@ -81,7 +81,7 @@ var level_data = [
 			[["none", 0, 0]]
 		],
 		"multipliers" = [2, 3, 3, 3, 4],
-		"unlocked" = false,
+		"unlocked" = true,
 	},
 	{ # level 9
 		"shapes" = [

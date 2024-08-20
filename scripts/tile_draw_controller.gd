@@ -18,11 +18,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	# Check if the primary action button is pressed and place a tile
-	if Input.is_action_just_released("primary") && placement_mode:
-		_place_shape()
-
-	if Input.is_action_just_pressed("secondary"):
-		_check_scale_shape()
+	# if Input.is_action_just_released("primary") && placement_mode:
+	# 	_place_shape()
 		
 	if placement_mode:
 		_placement()
@@ -47,6 +44,7 @@ func enter_placement_mode(shape):
 
 func exit_placement_mode(shape, shape_ui):
 	if !shapes_control.mouse_over and _can_place_shape_at_current_position():
+		_place_shape()
 		shape_ui.expire()
 	else:
 		shape_ui.visible = true
@@ -56,9 +54,12 @@ func exit_placement_mode(shape, shape_ui):
 
 func _can_place_shape_at_current_position() -> bool:
 	# Check if the cells where the shape would be placed are already occupied
+	var mouse_pos = get_global_mouse_position()
+	var cell_pos = local_to_map(mouse_pos)
+
 	for block_pos in shape.blocks.keys():
-		var global_pos = shape.global_position + block_pos
-		if get_used_cells(0).has(global_pos):
+		var global_pos = cell_pos + block_pos
+		if get_used_cells(0).has(global_pos) or get_used_cells(1).has(global_pos):
 			return false
 
 	return true
@@ -145,11 +146,20 @@ func _place_block(global_pos, block, layer=1):
 func _placement():
 	var mouse_pos = get_global_mouse_position()
 	var cell_pos = local_to_map(mouse_pos)
-	
+	var error_pos = false
 	_clear_placement_cells()
 	for block_pos in shape.blocks.keys():
 		var global_pos = cell_pos + block_pos
 		_place_block(global_pos, shape.blocks[block_pos], 2)
+
+		if get_used_cells(0).has(global_pos) or get_used_cells(1).has(global_pos):
+			error_pos = true
+	
+	if error_pos:
+		# Modulate the layer 2
+		set_layer_modulate(2, Color(1.0, 0.4, 0.4, 1.0))
+	else:
+		set_layer_modulate(2, Color(1, 1, 1, 0.5))
 		
 	prev_pos = cell_pos
 

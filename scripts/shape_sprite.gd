@@ -30,29 +30,29 @@ func draw_shape():
 		var sprite = Sprite2D.new()
 		sprite.texture = get_block_texture(block)
 		sprite.position = block_pos * 64
-
-		if block_pos.x < min_x:
-			min_x = block_pos.x
-		if block_pos.y < min_y:
-			min_y = block_pos.y
-		if block_pos.x > max_x:
-			max_x = block_pos.x
-		if block_pos.y > max_y:
-			max_y = block_pos.y
-
 		add_child(sprite)
+
+		min_x = min(min_x, block_pos.x)
+		min_y = min(min_y, block_pos.y)
+		max_x = max(max_x, block_pos.x)
+		max_y = max(max_y, block_pos.y)
+
+	var shape_width = (max_x - min_x + 1) * 64
+	var shape_height = (max_y - min_y + 1) * 64
+
+	var parent_size = get_parent().get_parent().size
+	var scale_factor = min(parent_size.x / shape_width, parent_size.y / shape_height)
 	
-	var to_scale = max(max_x - min_x + 1, max_y - min_y + 1)
-	scale.x /= to_scale
-	scale.y /= to_scale
+	# Additional scaling to ensure that there is some room near the boundaries
+	var margin_scale_factor = 0.8
+	scale_factor *= margin_scale_factor
+	scale = Vector2(scale_factor, scale_factor)
 
-	# By default, the pivot is the root block
-	# We need to shift the pivot to the center of the shape
-	var center = Vector2((max_x + min_x) / 2, (max_y + min_y) / 2)
-	position = -center * 64 * scale
+	# Calculate the center
+	var shape_center = Vector2((max_x + min_x) * 32, (max_y + min_y) * 32) * scale_factor
 
-	# Finally, move to the center of the container
-	position += get_parent().get_parent().size / 2
+	# Position the shape to center
+	position = (parent_size / 2) - shape_center
 	
 	
 
